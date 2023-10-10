@@ -1,0 +1,88 @@
+.image_jeu {
+    display: flex;
+    padding: 5%;
+    margin: 0px;
+    background-color: rgba(17,16,47,255);
+    justify-content: space-around;
+    margin-left: 10%;
+    width: 75%;
+    position:relative;
+}
+.main {
+    background-color: rgba(17,16,47,255);
+    color: white;
+}
+body {
+    margin : 0;
+    
+}
+.test {
+    position: absolute;
+    display: flex;
+}
+.centrage {
+    position:relative;
+    margin: 3%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+img {
+    padding: 0.5%;
+}
+a {
+  font-size: 90%;
+}
+.elo {
+    font-weight: bold;
+    color: rgb(58, 0, 128);
+    font-size: 230%;
+    margin : 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.chess .solitaire .poker {
+    background-color: transparent;
+    
+}
+
+.information {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.inf {
+    margin: 100px;
+    display: flex;
+
+}
+.op {
+    margin: 10px;
+}
+.gb{
+    margin:10px;
+}
+.gbop {
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+.blue {
+    padding: 50px;
+   background-color: rgb(0, 166, 255);
+   margin:10px;
+}
+.green {
+    padding: 50px;
+   background-color: rgb(0, 255, 64);
+   margin:10px;
+}
+.purple {
+    padding: 50px;
+   background-color: rgb(204, 0, 255);
+   margin:10px;
+}
+.oranges {
+    padding: 50px;
+   background-color: rgb(255, 174, 0);
+   margin:10px;
+}
+
