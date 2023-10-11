@@ -117,4 +117,13 @@ a {
 .wd {
     border-radius: 15px;
 }
+.delimiter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ppw {
+    display: flex;
+    justify-content: center;
+}
 
