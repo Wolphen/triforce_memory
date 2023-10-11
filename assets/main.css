@@ -121,6 +121,9 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-
+}
+.ppw {
+    display: flex;
+    justify-content: center;
 }
 
