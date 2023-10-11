@@ -1,3 +1,6 @@
+* {
+    color : white;
+}
 .image_jeu {
     display: flex;
     padding: 5%;
