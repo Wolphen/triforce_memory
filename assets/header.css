@@ -1,4 +1,4 @@
-body {
+.mains {
     background-image: url("img/img1.png");
     background-size:contain;
     background-repeat: no-repeat;
@@ -6,7 +6,9 @@ body {
     
 }
 
-
+a:hover{
+    color: rgb(236,145,35,255);;
+}
 
 
 header {
