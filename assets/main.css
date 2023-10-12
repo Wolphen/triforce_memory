@@ -474,30 +474,24 @@ input[type="submit"]:hover{
     margin: auto;
     margin-top: 20px;
     height: 60px;
-
 }
-
 .orange_circle:hover{
     transform: scale(1.1);
 }
-
 .logo_contact{
     display: block;
     width: 40px;
     margin: auto;
     padding-top: 8px;
 }
-
 .text_contact{
     text-align: center;
 }
-
 .block_form{
     font-size: large; 
     margin-left: 163px;
     margin-top: 40px;
 }
-
 .contact_form{
     background-color: rgb(39, 38, 69);
     color: rgb(133, 132, 134);
@@ -507,7 +501,6 @@ input[type="submit"]:hover{
     width: 225px;
     margin-right: 10px;
 }
-
 .submit_contact {
     background-color: rgb(236,145,35,255);
     color: white;
@@ -517,13 +510,10 @@ input[type="submit"]:hover{
     cursor: pointer;
     font-size: larger;
     margin-top: 0.75;
-
 }
-
 .submit_contact:hover{
     transform: scale(1.1);
 }
-
 .subject_form{
     background-color: rgb(39, 38, 69);
     color: rgb(133, 132, 134);
@@ -532,7 +522,6 @@ input[type="submit"]:hover{
     padding: 1%;
     width: 492px;
 }
-
 .textform{
     background-color: rgb(39, 38, 69);
     color: rgb(133, 132, 134);
@@ -541,7 +530,6 @@ input[type="submit"]:hover{
     padding: 1%;
     width: 492px;
     height: 85px;
-    
 }
 .place {
     margin-left: 40px;
@@ -550,7 +538,6 @@ input[type="submit"]:hover{
 
 
 /* Code myAccount */
-
 
 
 
@@ -582,7 +569,6 @@ input[type="submit"]:hover{
     background-color: rgb(39, 38, 69);
     color: rgb(133, 132, 134);
     margin-top: 5px;
-
 }
 .inputsubmit1 {
     background-color: rgb(236,145,35,255);
@@ -593,22 +579,18 @@ input[type="submit"]:hover{
     cursor: pointer;
     font-size: larger;
     margin-top: 10px;
-
 }
 body::-webkit-scrollbar {
     width: 12px; /* width of the entire scrollbar */
   }
-  
   body::-webkit-scrollbar-track {
     background: rgba(14,11,38,255); /* color of the tracking area */
   }
-  
   body::-webkit-scrollbar-thumb {
     background-color: rgb(0, 0, 0); /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
     border: 2px solid white; /* creates padding around scroll thumb */
   }
-
   .creecompte {
     margin-left: 110px;
     border: none;
