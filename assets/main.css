@@ -130,11 +130,14 @@ a {
     display: flex;
     justify-content: center;
 }
-* {
-    color: white;
-}
 
-/* code de larbi */
+
+
+
+/* code de inscription */
+
+
+
 
 body {
     background-color: rgb(16,14,46,1);
@@ -204,7 +207,7 @@ nav {
     border-color: transparent;
 }
 
-.inputtexte, .emailfo{
+.inputtexte {
     width: 500px;
     padding: 9px;
     margin: 1% -35%;
@@ -218,7 +221,7 @@ nav {
 
 
 
-input[type="submit"] {
+.inputsubmit {
     background-color: rgb(236,145,35,255);
     color: white;
     padding: 19px 19px;
@@ -274,7 +277,14 @@ footer{
 .copyright{
     margin-left: 21%;
 }
-/* Code du score */
+
+
+
+/* Code du score.html */
+
+
+
+
 .scores {
     color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -310,7 +320,7 @@ td {
     text-align: center;
 }
 
-.hi2 {
+.hi3 {
     font-size: 19px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: white;
@@ -350,6 +360,17 @@ td {
 .invi {
     color: transparent;
 }
+
+
+
+
+
+/* Code du chat box */
+
+
+
+
+
 .chatbox_body{
     background-color: white;
     width: 250px;
@@ -431,8 +452,15 @@ td {
 .chat_chat{
     padding-top: 20px;
 }
-/* code connexion */
-form {
+
+
+
+/* code connexion.html */
+
+
+
+
+.formm {
     width: 300px;
     margin: 0 auto;
     padding: 100px;
@@ -443,7 +471,7 @@ form {
 
 
 
-input[type="text"]  {
+.inputtexte, .inputl  {
     width: 500px;
     padding: 9px;
     margin: 1% -35%;
@@ -464,7 +492,7 @@ input[type="password"]  {
 
 
 
-input[type="submit"] {
+.inputsubmit {
     background-color: rgb(236,145,35,255);
     color: white;
     padding: 19px 19px;
@@ -479,13 +507,18 @@ input[type="submit"] {
 input[type="submit"]:hover{
     background-color:rgb(168, 103, 23) ;
 }
+
+
+
 /* code contact */
+
+
+
 
 .contact_main{
     background-color: rgba(17,16,47,255);
     
     color: rgb(255, 255, 255, .5);
-
 }
 
 .banner_title {
@@ -537,7 +570,7 @@ input[type="submit"]:hover{
 .block_form{
     font-size: large; 
     margin-left: 163px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .contact_form{
@@ -575,7 +608,7 @@ input[type="submit"]:hover{
     width: 492px;
 }
 
-.text_form{
+.textform{
     background-color: rgb(39, 38, 69);
     color: rgb(133, 132, 134);
     border: none;
@@ -583,8 +616,18 @@ input[type="submit"]:hover{
     padding: 1%;
     width: 492px;
     height: 85px;
+    
 }
+.place {
+    margin-left: 40px;
+}
+
+
+
 /* Code myAccount */
+
+
+
 
 .emailpass{
     display: flex;
@@ -604,4 +647,26 @@ input[type="submit"]:hover{
 }
 .femail{
     justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+}
+.emailfo{
+    width: 500px;
+    padding: 9px;
+    
+    background-color: rgb(39, 38, 69);
+    color: rgb(133, 132, 134);
+    margin-top: 5px;
+
+}
+.inputsubmit1 {
+    background-color: rgb(236,145,35,255);
+    color: white;
+    padding: 19px 19px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: larger;
+    margin-top: 10px;
+
 }
