@@ -368,17 +368,17 @@ td {
 /* Code du chat box */
 
 
-
-
-
 .chatbox_body{
+    display: flex;
     background-color: white;
     width: 250px;
     height: 400px;
     border-radius: 2%;
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: flex-start;
+    margin-left: 82%;
 }
 
 .chat_top{
@@ -395,13 +395,13 @@ td {
     width: 20px;
 }
 .chat_input{
-    margin-left: 10px;
+
     margin-top: 190px;
 }
 
 .send_input{
    border: none;
-   background-color: white;
+   background-color: rgb(190, 173, 173);
    margin-left: 5px;
 }
 
@@ -412,7 +412,8 @@ td {
 }
 
 .chat_user{
-    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(255, 255, 255);
     background-color: blue;
     width: 60px;
     height: 25px;
@@ -425,6 +426,7 @@ td {
 }
 
 .chat_other{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: lightgrey;
     font-size: small;
     width: 180px;
@@ -433,6 +435,7 @@ td {
     margin: 0px;
     margin-top: 5px;
     margin-bottom: 5px;
+    color: rgb(255, 255, 255);
 }
 
 .block_user{
@@ -449,11 +452,10 @@ td {
     display: flex;
 }
 
-.chat_chat{
-    padding-top: 20px;
+
+.msg {
+    color: black;
 }
-
-
 
 /* code connexion.html */
 
@@ -670,3 +672,16 @@ input[type="submit"]:hover{
     margin-top: 10px;
 
 }
+body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: rgba(14,11,38,255); /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0); /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 2px solid white; /* creates padding around scroll thumb */
+  }
