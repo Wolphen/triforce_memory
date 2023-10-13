@@ -5,5 +5,5 @@
 
 ## Vous pouvez aussi 🖱cliquer-ci dessous👇 pour accéder a notre site:
 https://wolphen.github.io/triforce_memory/
-(![cover_flash](https://github.com/Wolphen/triforce_memory/assets/144563766/883e0ae7-e2e4-4f7d-b70e-076d40b805f6)
+![cover_flash](https://github.com/Wolphen/triforce_memory/assets/144563766/883e0ae7-e2e4-4f7d-b70e-076d40b805f6)
 
