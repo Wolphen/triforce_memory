@@ -268,7 +268,14 @@ table {
     margin: 50px auto 0;   
 }
 .maison {
-    border-radius: 15px;
+    border-radius: 20px;
+    padding: 9px;
+    color: rgb(255, 255, 255);
+    font-size: x-large;
+    background-color: rgb(236,145,35,255);
+}
+.truie {
+   border-radius: 10%;
     padding: 9px;
     color: rgb(255, 255, 255);
     font-size: x-large;
@@ -755,4 +762,7 @@ body {
 }
 .llow {
     font-size: 90%;
+}
+tr {
+    color:orange;
 }
