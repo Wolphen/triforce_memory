@@ -166,14 +166,7 @@ h1 {
     font-size: 25px;
     text-align: center;
 }
-header {
-    display: flex;
-    justify-content: space-around;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
-    font-weight: bold;
-    color: white;
-}
+
 .t1 {
     font-size: x-large;
     margin-top: 15px;
