@@ -632,6 +632,24 @@ body::-webkit-scrollbar {
     background-size: cover;
     height: 950px;
 }
+.royal_board1{
+   
+    display: flex;
+    justify-content: space-between;
+    background-image: url("img/hyrule1.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 950px;
+}
+.royal_board2{
+   
+    display: flex;
+    justify-content: space-between;
+    background-image: url("img/backround.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 950px;
+}
 .board12, .board8, .board4{
     width: 50%;
     display: flex;
