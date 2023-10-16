@@ -5,9 +5,8 @@ USE triforce_memory
 
 CREATE TABLE score(
     id INT UNSIGNED NOT NULL AUTO_INCRMENT,
-    /*identifiant VARCHAR(40) NOT NULL,*/
-    identifiant_joueur VARCHAR(10) NOT NULL,
-    identifiant_jeu VARCHAR(40) NOT NULL,
+    id_joueur VARCHAR(10) NOT NULL,
+    id_jeu VARCHAR(40) NOT NULL,
     diffculte_jeu VARCHAR(10) NOT NULL,
     score_partie INT(3) NOT NULL,
     date_heure DATETIME NOT NULL,
@@ -17,7 +16,7 @@ CREATE TABLE score(
 ENGINE = INNODB;
 
 
-INSERT INTO score (identifiant_joueur, identifiant_jeu, diffculte_jeu, score_partie, date_heure)
+INSERT INTO score (id_joueur, id_jeu, diffculte_jeu, score_partie, date_heure)
 VALUES  ('1', '1', 'Difficile', '60', '2023-10-16 12:30:12'),
         ('2', '1', 'Difficile', '24', '2023-10-16 12:30:12'),
         ('3', '1', 'Difficile', '31', '2023-10-16 12:30:12'),
@@ -43,3 +42,10 @@ VALUES  ('1', '1', 'Difficile', '60', '2023-10-16 12:30:12'),
         ('3', '1', 'Difficile', '376', '2023-10-16 12:30:12'),
         ('4', '1', 'Difficile', '128', '2023-10-16 12:30:12'),
         ('5', '1', 'Difficile', '321', '2023-10-16 12:30:12');
+        
+/* Modification Type de données Score */
+ALTER TABLE score
+MODIFY id_joueur INT;
+
+ALTER TABLE score
+MODIFY id_jeu INT;
