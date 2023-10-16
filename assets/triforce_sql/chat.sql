@@ -1,0 +1,36 @@
+
+CREATE TABLE messagerie(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    jeux_id INT NOT NULL UNSIGNED, 
+    expediteur_id INT UNSIGNED NOT NULL,
+    message_text TEXT NOT NULL, 
+    horodatage DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+);
+
+INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
+VALUES ('1', '3', 'Slt', '2023/10/16'),
+       ('1', '4', 'yo', '2023/10/16'),
+       ('1', '5', 'bonjour', '2023/10/16'),
+       ('1', '6', 'bjr', '2023/10/16'),
+       ('1', '7', 'salut', '2023/10/16'),
+       ('1', '8', 'wsh', '2023/10/16'),
+       ('1', '9', 'slt', '2023/10/16'),
+       ('1', '3', 'ca va', '2023/10/16'),
+       ('1', '5', 'bien ou quoi', '2023/10/16'),
+       ('1', '9', 'ca se passe', '2023/10/16'),
+       ('1', '8', 'ca dit quoi', '2023/10/16'),
+       ('1', '6', 'le chatttt monte vitttee', '2023/10/16'),
+       ('1', '7', 'gg', '2023/10/16'),
+       ('1', '4', 'gg', '2023/10/16'),
+       ('1', '3', 'c chaud', '2023/10/16'),
+       ('1', '4', 'si si zelda', '2023/10/16'),
+       ('1', '5', 'link incroyable', '2023/10/16'),
+       ('1', '7', 'c quoi le nom', '2023/10/16'),
+       ('1', '6', 'triforce' 'memory', '2023/10/16'),
+       ('1', '8', 'gg', '2023/10/16'),
+       ('1', '9', 'bien jouer', '2023/10/16'),
+       ('1', '8', 'ca donne envie de jouer a zelda', '2023/10/16'),
+       ('1', '9', 'graaaaavvvvvvveee', '2023/10/16'),
+       ('1', '10', 'yo les gaaaaaaa', '2023/10/16'),
+       ('1', '10', 'ca se passe', '2023/10/16');
