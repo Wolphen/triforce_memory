@@ -35,7 +35,6 @@
         difficulte_jeu VARCHAR(10) NOT NULL,
         score_partie INT(3) NOT NULL,
         date_heure DATETIME NOT NULL DEFAULT,
-
         PRIMARY KEY(id)
         )
         ENGINE = INNODB;
@@ -54,7 +53,8 @@
          message_text TEXT NOT NULL, 
         horodatage DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
          PRIMARY KEY (id)
-        )ENGINE = INNODB;
+        )
+        ENGINE = INNODB;
 
 /* INSERT des different table */
 
@@ -186,7 +186,7 @@
 
     SELECT id_joueur, difficulte_jeu, score_partie
     FROM score
-    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu",
+    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu";
 
     UPDATE score_partie
     FROM score

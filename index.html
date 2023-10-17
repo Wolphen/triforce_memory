@@ -32,7 +32,7 @@
 <main >
 <!-- Code pour les 3 images de jeux et leurs description -->
     <body class = mains>
-        <div>
+        <div >
 
             <div class="image_jeu">
                 <div class="centrage">
@@ -109,9 +109,9 @@
             <img src="assets/img/delimiter.png" alt="Delimiter" class = "delimiter">
         </div>
         <div class="ppw">
-            <img src="assets/img/sllappo.png" alt="matthieu">
-            <img src="assets/img/larbi.png" alt="larbi">
-            <img src="assets/img/enzo.png" alt="enzo">
+            <img src="assets/img/sllappo.png" alt="matthieu" class = "imgg">
+            <img src="assets/img/larbi.png" alt="larbi" class = "imgg">
+            <img src="assets/img/enzo.png" alt="enzo" class = "imgg">
         </div>
         
         </body>
