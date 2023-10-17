@@ -1,8 +1,6 @@
 /* Création de la DATABASE */
 
-
-CREATE DATABASE triforce_memory;
-
+ CREATE DATABASE triforce_memory;
 
 /* Création des tables */
 
@@ -34,7 +32,7 @@ CREATE DATABASE triforce_memory;
         id INT UNSIGNED NOT NULL AUTO_INCRMENT,
         id_joueur VARCHAR(10) NOT NULL,
         id_jeu VARCHAR(40) NOT NULL,
-        diffculte_jeu VARCHAR(10) NOT NULL,
+        difficulte_jeu VARCHAR(10) NOT NULL,
         score_partie INT(3) NOT NULL,
         date_heure DATETIME NOT NULL DEFAULT,
 
@@ -42,10 +40,10 @@ CREATE DATABASE triforce_memory;
         )
         ENGINE = INNODB;
 
-        /* Modification matthieu type de donné score */
+        /* Modification matthieu type de donné score // ajout des unsigned */
             ALTER TABLE score
-            MODIFY id_joueur INT,
-            MODIFY id_joueur INT;
+            MODIFY id_joueur INT UNSIGNED NOT NULL,
+            MODIFY id_jeu INT UNSIGNED NOT NULL;
 
     /* Table de chat */
         CREATE TABLE messagerie(
@@ -78,32 +76,32 @@ CREATE DATABASE triforce_memory;
 
     /* INSERT Table score */
 
-        INSERT INTO score (id_joueur, id_jeu, diffculte_jeu, score_partie, date_heure)
+        INSERT INTO score (id_joueur, id_jeu, difficulte_jeu, score_partie, date_heure)
         VALUES  ('1', '1', 'Difficile', '60', '2023-10-16 12:30:12'),
         ('2', '1', 'Difficile', '24', '2023-10-16 12:30:12'),
-        ('3', '1', 'Difficile', '31', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facile', '31', '2023-10-16 12:30:12'),
         ('4', '1', 'Difficile', '12', '2023-10-16 12:30:12'),
-        ('5', '1', 'Difficile', '120', '2023-10-16 12:30:12'),
-        ('1', '1', 'Difficile', '142', '2023-10-16 12:30:12'),
+        ('5', '1', 'Normal', '120', '2023-10-16 12:30:12'),
+        ('1', '1', 'Facile', '142', '2023-10-16 12:30:12'),
         ('2', '1', 'Difficile', '189', '2023-10-16 12:30:12'),
-        ('3', '1', 'Difficile', '109', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facile', '109', '2023-10-16 12:30:12'),
         ('4', '1', 'Difficile', '200', '2023-10-16 12:30:12'),
         ('5', '1', 'Difficile', '178', '2023-10-16 12:30:12'),
-        ('1', '1', 'Difficile', '132', '2023-10-16 12:30:12'),
+        ('1', '1', 'Normal', '132', '2023-10-16 12:30:12'),
         ('2', '1', 'Difficile', '89', '2023-10-16 12:30:12'),
-        ('3', '1', 'Difficile', '76', '2023-10-16 12:30:12'),
-        ('4', '1', 'Difficile', '65', '2023-10-16 12:30:12'),
-        ('5', '1', 'Difficile', '90', '2023-10-16 12:30:12'),
-        ('1', '1', 'Difficile', '123', '2023-10-16 12:30:12'),
-        ('2', '1', 'Difficile', '154', '2023-10-16 12:30:12'),
-        ('3', '1', 'Difficile', '176', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '76', '2023-10-16 12:30:12'),
+        ('4', '1', 'Normal', '65', '2023-10-16 12:30:12'),
+        ('5', '1', 'Normal', '90', '2023-10-16 12:30:12'),
+        ('1', '1', 'Facil', '123', '2023-10-16 12:30:12'),
+        ('2', '1', 'Normal', '154', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '176', '2023-10-16 12:30:12'),
         ('4', '1', 'Difficile', '107', '2023-10-16 12:30:12'),
-        ('5', '1', 'Difficile', '137', '2023-10-16 12:30:12'),
+        ('5', '1', 'Facil', '137', '2023-10-16 12:30:12'),
         ('1', '1', 'Difficile', '178', '2023-10-16 12:30:12'),
-        ('2', '1', 'Difficile', '267', '2023-10-16 12:30:12'),
-        ('3', '1', 'Difficile', '376', '2023-10-16 12:30:12'),
+        ('2', '1', 'Normal', '267', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '376', '2023-10-16 12:30:12'),
         ('4', '1', 'Difficile', '128', '2023-10-16 12:30:12'),
-        ('5', '1', 'Difficile', '321', '2023-10-16 12:30:12');
+        ('5', '1', 'Facil', '321', '2023-10-16 12:30:12');
 
     /* INSERT Table chat */
        INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
@@ -133,7 +131,7 @@ CREATE DATABASE triforce_memory;
        ('1', '10', 'yo les gaaaaaaa', '2023-10-16 10:20:17'),
        ('1', '10', 'ca se passe', '2023-10-16 10:20:19');
 
-/* demande utilisateur mail mdp pseudo */
+/* requête connexion mail mdp pseudo */
 
     INSERT INTO utilisateur (email, mot_de_passe, pseudo)
     VALUES ("email@email.com", "entrée mdp", "entrée pseudo")
@@ -148,10 +146,50 @@ CREATE DATABASE triforce_memory;
     SET email= "nouvel email"
     where id="id de la personne voulant changer de mot de passe"
 
-
 /* requête de connexion */
 
     SELECT *
     FROM utilisateur
     WHERE email = "entrée email"
     AND mot_de_passe = "entrée mdp"
+
+/* Requête jeu/nom du joueur/difficulté/score + Filtre + Jointure  */
+
+      SELECT U.pseudo, J.nom_du_jeu, S.difficulte_jeu, S.score_partie
+    FROM utilisateur as U 
+    INNER JOIN score as S 
+        ON U.id = S.id_joueur
+    INNER JOIN jeu as J
+        ON J.id = S.id_jeu
+    ORDER BY J.nom_du_jeu, S.difficulte_jeu, S.score_partie;
+
+/* clef etrangère */
+
+    ALTER TABLE score
+    ADD FOREIGN KEY (id_jeu) REFERENCES jeu(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+    ALTER TABLE score 
+    ADD FOREIGN KEY (id_joueur) REFERENCES utilisateur(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/* Anti doublon du score */
+
+    SELECT id_joueur, difficulte_jeu, score_partie
+    FROM score
+
+    UPDATE score_partie
+    FROM score
+    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu",
+
+    INSERT INTO score (id_joueur, difficulte_jeu, id_jeu, score)
+    VALUES (id_joueur1, Difficile, 1, score de la partie)
+
+/* nouvel ligne correspondante au chat dans la base de données */
+
+    INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
+        VALUES ('2', '5', 'Slt bg', '2023-10-16 10:19:55'),
+
+/* récupéré les messages des dernières 24H */
+
+    SELECT message_text
+    FROM messagerie
+    WHERE  horodatage BETWEEN "date d'hier" AND "maintenant";
