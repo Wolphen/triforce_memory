@@ -8,8 +8,8 @@
 
      CREATE TABLE utilisateur (
         id INT UNSIGNED NOT NULL  AUTO_INCREMENT,
-        email VARCHAR(40) NOT NULL UNIQUE,
-        mot_de_passe VARCHAR(40) NOT NULL,
+        email VARCHAR(80) NOT NULL UNIQUE,
+        mot_de_passe VARCHAR(256) NOT NULL,
         pseudo VARCHAR(15) NOT NULL UNIQUE,
         date_inscription DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
         date_connexion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -30,8 +30,8 @@
 
         CREATE TABLE score(
         id INT UNSIGNED NOT NULL AUTO_INCRMENT,
-        id_joueur VARCHAR(10) NOT NULL,
-        id_jeu VARCHAR(40) NOT NULL,
+        id_joueur INT UNSIGNED NOT NULL,
+        id_jeu INT UNSIGNED NOT NULL,
         difficulte_jeu VARCHAR(10) NOT NULL,
         score_partie INT(3) NOT NULL,
         date_heure DATETIME NOT NULL DEFAULT,
@@ -40,10 +40,11 @@
         )
         ENGINE = INNODB;
 
-        /* Modification matthieu type de donné score // ajout des unsigned */
+        /* Modification matthieu type de donné score // ajout des unsigned
             ALTER TABLE score
             MODIFY id_joueur INT UNSIGNED NOT NULL,
             MODIFY id_jeu INT UNSIGNED NOT NULL;
+        */
 
     /* Table de chat */
         CREATE TABLE messagerie(
@@ -53,7 +54,7 @@
          message_text TEXT NOT NULL, 
         horodatage DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
          PRIMARY KEY (id)
-        );
+        )ENGINE = INNODB;
 
 /* INSERT des different table */
 
@@ -131,37 +132,44 @@
        ('1', '10', 'yo les gaaaaaaa', '2023-10-16 10:20:17'),
        ('1', '10', 'ca se passe', '2023-10-16 10:20:19');
 
-/* requête connexion mail mdp pseudo */
+/* requête inesciption mail mdp pseudo */
 
     INSERT INTO utilisateur (email, mot_de_passe, pseudo)
-    VALUES ("email@email.com", "entrée mdp", "entrée pseudo")
+    VALUES ("email@email.com", "entrée mdp", "entrée pseudo");
 
 /* Changement de mot de passe / email */
 
     UPDATE utilisateur
     SET mot_de_passe= "nouveau mots de passe"
-    where id="id de la personne voulant changer de mot de passe"
+    where id="id de la personne voulant changer de mot de passe";
 
     UPDATE utilisateur
     SET email= "nouvel email"
-    where id="id de la personne voulant changer de mot de passe"
+    where id="id de la personne voulant changer d'email";
 
 /* requête de connexion */
 
     SELECT *
     FROM utilisateur
     WHERE email = "entrée email"
-    AND mot_de_passe = "entrée mdp"
+    AND mot_de_passe = "entrée mdp";
 
-/* Requête jeu/nom du joueur/difficulté/score + Filtre + Jointure  */
+/* Requête jeu/nom du joueur/difficulté/score + Filtre + Jointure (Story 7) */
 
-      SELECT U.pseudo, J.nom_du_jeu, S.difficulte_jeu, S.score_partie
+    SELECT U.pseudo, J.nom_du_jeu, S.difficulte_jeu, S.score_partie
     FROM utilisateur as U 
     INNER JOIN score as S 
         ON U.id = S.id_joueur
     INNER JOIN jeu as J
         ON J.id = S.id_jeu
-    ORDER BY J.nom_du_jeu, S.difficulte_jeu, S.score_partie;
+    WHERE S.difficulte_jeu= "Difficile"
+    ORDER BY J.nom_du_jeu, 
+    CASE S.difficulte_jeu 
+        WHEN "Facil" THEN 1 
+        WHEN "Normal" THEN 2
+        ELSE 3
+        END,
+    S.score_partie;
 
 /* clef etrangère */
 
@@ -171,25 +179,55 @@
     ALTER TABLE score 
     ADD FOREIGN KEY (id_joueur) REFERENCES utilisateur(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
+    ALTER TABLE messagerie
+    ADD FOREIGN KEY (expediteur_id) REFERENCES utilisateur(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
 /* Anti doublon du score */
 
     SELECT id_joueur, difficulte_jeu, score_partie
     FROM score
+    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu",
 
     UPDATE score_partie
     FROM score
-    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu",
+    WHERE id = "du score de la partie";
 
     INSERT INTO score (id_joueur, difficulte_jeu, id_jeu, score)
-    VALUES (id_joueur1, Difficile, 1, score de la partie)
+    VALUES (id_joueur1, Difficile, 1, score de la partie);
 
 /* nouvel ligne correspondante au chat dans la base de données */
 
     INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
-        VALUES ('2', '5', 'Slt bg', '2023-10-16 10:19:55'),
+        VALUES ('2', '5', 'Slt bg', '2023-10-16 10:19:55');
 
 /* récupéré les messages des dernières 24H */
 
-    SELECT message_text
+    /*  
+    requête test 
+
+    SELECT expediteur_id, message_text, horodatage                                
     FROM messagerie
-    WHERE  horodatage BETWEEN "date d'hier" AND "maintenant";
+    WHERE  horodatage BETWEEN "2023-10-15 10:20:00" AND "2023-10-16 10:20:00";
+    */
+
+    SELECT U.pseudo, M.message_text, M.horodatage, (U.id = M.expediteur_id) as isSender
+    FROM utilisateur as U 
+    INNER JOIN messagerie as M 
+        ON U.id = M.expediteur_id
+    WHERE  M.horodatage >= NOW() - INTERVAL 1 DAY;
+
+/* Recherche "AU" */
+
+    /*  
+    Requête test
+
+    SELECT *
+    FROM score
+    WHERE pseudo LIKE "%au%";
+     */
+
+    SELECT S.*, U.pseudo
+    FROM utilisateur as U 
+    INNER JOIN score as S 
+        ON U.id = S.id_joueur
+    WHERE U.pseudo LIKE '%au%';
