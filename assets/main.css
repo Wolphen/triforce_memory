@@ -791,7 +791,26 @@ body::-webkit-scrollbar {
         text-align: center;
         font-family:"Pixelify Sans";
         font-size:x-large;
-        margin-left: 68vh;
     }
     
+    .royal{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .heros{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .vilains{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
