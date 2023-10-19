@@ -240,3 +240,27 @@ LIMIT 1;
 
 /* Story 18 */
 
+SELECT M.*, (SELECT U.pseudo FROM utilisateurs as U WHERE id = 2) as pseudo_utilisateur,
+(
+    SELECT COUNT(SU.id) 
+    FROM services_utilisateurs AS SU
+    LEFT JOIN services AS S
+        ON SU.id_service = S.id
+    WHERE SU.id_utilisateur = 2
+    AND M.month = MONTH(S.date_service)
+) as total_participation
+FROM 
+    (
+        SELECT 1 as month UNION 
+        SELECT 2 as month UNION 
+        SELECT 3 as month UNION
+        SELECT 4 as month UNION 
+        SELECT 5 as month UNION
+        SELECT 6 as month UNION
+        SELECT 7 as month UNION 
+        SELECT 8 as month UNION 
+        SELECT 9 as month UNION
+        SELECT 10 as month UNION 
+        SELECT 11 as month UNION 
+        SELECT 12 as month
+    ) AS M
