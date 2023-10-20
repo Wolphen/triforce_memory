@@ -77,7 +77,8 @@ USE services_db;
 
 /* Story 3 */
 
-  UPDATE utilisateurs set adresse = '2 rue du lac', code_postal = '75019', ville = 'Paris', pays = 'France', portable = '0602030405', fixe = '0102030405'
+  UPDATE utilisateurs 
+  SET adresse = '2 rue du lac', code_postal = '75019', ville = 'Paris', pays = 'France', portable = '0602030405', fixe = '0102030405'
   WHERE id = 1;
 
 /* Story 4 */
@@ -221,11 +222,11 @@ USE services_db;
   LEFT JOIN Utilisateurs U2 
     ON P.id_utilisateur = U2.id
   GROUP BY S.id
-  ORDER BY S.date_service DESC, S.ville, S.nom
+  ORDER BY S.date_service DESC, S.ville, S.nom;
 
 /* Story 17 */
 
-  SELECT S.*, U.pseudo, U.email, U.adresse, U.code_postal, U.ville, U.pays, U.portable, U.fixe, U.date_inscription 
+  SELECT S.*, U.pseudo AS pseudo_de_la_personne_inscrite, U.email, U.adresse, U.code_postal, U.ville, U.pays, U.portable, U.fixe, U.date_inscription 
   FROM services_utilisateurs as US
   INNER JOIN services as S
     ON US.id_utilisateur = S.id_utilisateur

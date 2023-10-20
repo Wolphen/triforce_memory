@@ -549,35 +549,27 @@
   ORDER BY espece, âge;
 
 /* Story 14 */
+    /* Première requête max */
+  SELECT MAX(H.montant) AS Gains, H.date,
+          SUM(CASE WHEN A.espece = 'Girafe' THEN 1 ELSE 0 END) AS NombreGirafes,
+            SUM(CASE WHEN A.espece = 'Lion' THEN 1 ELSE 0 END) AS NombreLions,
+            SUM(CASE WHEN A.espece = 'Chevre' THEN 1 ELSE 0 END) AS NombreChèvres,
+            SUM(CASE WHEN A.espece = 'Hippopotame' THEN 1 ELSE 0 END) AS NombbreHippo
+  FROM animaux AS A
+  LEFT JOIN historique AS H
+  ON H.id = A.id
+  group by year(h.date)
+  order by Gains desc limit 1;
 
-  SELECT
-      MAX(SUBSTRING(date, 1, 4)) AS année, 
-      max(montant) AS benef,
-      SUM(CASE WHEN A.espece = 'Girafe' THEN 1 ELSE 0 END) AS NombreGirafes,
-        SUM(CASE WHEN A.espece = 'Lion' THEN 1 ELSE 0 END) AS NombreLions,
-        SUM(CASE WHEN A.espece = 'Chèvre' THEN 1 ELSE 0 END) AS NombreChèvres,
-        SUM(CASE WHEN A.espece = 'Hippopotame' THEN 1 ELSE 0 END) AS NombreHippopotames
-  FROM historique h
-  JOIN enclos_animaux ia 
-    ON SUBSTRING(h.date, 1, 4) = YEAR(ia.date_entree)
-  JOIN animaux a 
-    ON a.id = ia.id_animal
-  GROUP BY H.id
-  ORDER BY benef DESC
-  limit 1;
-    /* Deuxieme requet min */
-  SELECT
-      min(SUBSTRING(date, 1, 4)) AS année, 
-      min(montant) AS benef,
-      SUM(CASE WHEN A.espece = 'Girafe' THEN 1 ELSE 0 END) AS NombreGirafes,
-        SUM(CASE WHEN A.espece = 'Lion' THEN 1 ELSE 0 END) AS NombreLions,
-        SUM(CASE WHEN A.espece = 'Chèvre' THEN 1 ELSE 0 END) AS NombreChèvres,
-        SUM(CASE WHEN A.espece = 'Hippopotame' THEN 1 ELSE 0 END) AS NombreHippopotames
-  FROM historique h
-  JOIN enclos_animaux ia 
-    ON SUBSTRING(h.date, 1, 4) = YEAR(ia.date_entree)
-  JOIN animaux a 
-    ON a.id = ia.id_animal
-  GROUP BY H.id
-  ORDER BY benef asc
-  limit 1
+      /* Deuxième requête min */
+      
+  SELECT MIN(H.montant) AS Gains, H.date,
+          SUM(CASE WHEN A.espece = 'Girafe' THEN 1 ELSE 0 END) AS NombreGirafes,
+            SUM(CASE WHEN A.espece = 'Lion' THEN 1 ELSE 0 END) AS NombreLions,
+            SUM(CASE WHEN A.espece = 'Chevre' THEN 1 ELSE 0 END) AS NombreChèvres,
+            SUM(CASE WHEN A.espece = 'Hippopotame' THEN 1 ELSE 0 END) AS NombbreHippo
+  FROM animaux AS A
+  LEFT JOIN historique AS H
+  ON H.id = A.id
+  group by year(h.date)
+  order by Gains ASC limit 1
