@@ -1,31 +1,9 @@
+<?php require "../../utils/commom.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triforce memory</title>
-    <link rel="stylesheet" href="assets/header.css">
-    <link rel="stylesheet" href="assets/footer.css">
-    <link rel="stylesheet" href="assets/main.css">
-    <link rel="icon" href="assets/img/téléchargé.jpg" type="image/x-icon">
-    <script src="assets/scripts.js"></script>
-</head>
-
+<?php require SITE_ROOT.'partials/head.php';?>
+<?php require SITE_ROOT.'partials/heade.php';?>
 <body>
-    
-
-    <header>
-        <div class="t1"><a href="index.html">Triforce memory</a></div>
-
-        <nav>
-            <div class="nav2"><a href="index.html">ACCUEIL</a></div>
-            <div class="nav1"><a href="select_level.html">JEU</a></div>
-            <div class="nav1"><a href="score.html">SCORES</a></div>
-            <div class="nav1"><a href="contact.html"> NOUS CONTACTER</div></a>
-            <div class ="nav1"><a href="connexion.html">CONNEXION</a></div>
-            <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
-        </nav>
-    </header>
 
     <div class="banniere">
         <h1 class = "scores">S C O R E S</h1>
@@ -63,46 +41,6 @@
     <div class="dsip">
         <div class="hi3"><a href="select_level.html">REJOUER</a></div>
     </div>
-    
-    <div class="chatbox_body">
-        <div class="chat_top">
-            <img src="assets/img/link.png" alt="pp link" class="link_larbi">
-            Chat général
-        </div>
-        <div class="chat_chat">
-            <div class="block_user">
-                <p class="chat_username">
-                    Moi
-                </p>
-                <p class="chat_user">
-                    Hello
-                </p>
-                <p class="chat_time">
-                    Aujourd'hui a 15h22
-                </p>
-            </div>
-            <div class="big_block">
-                <img src="assets/img/revali.png" alt="pp revali" class="revali_enzo">
-                <div class="block_other">
-                    <p class="chat_username">
-                        Arthur
-                    </p>
-                    <p class="chat_other">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                    <p class="chat_time">
-                        Aujourd'hui a 15h23
-                    </p>
-                </div>
-            </div>
-            <form action="POST" action="traitement.php" class="chat_input">
-                <input type="text" name="chat" id="chat" placeholder="Votre message...">
-                <input type="submit" value="Envoyer" class="send_input">
-            </form>
-        </div>
-    </div>
-   
-
     <footer>
         <div class="wrapper">
             <section class="wrap">
