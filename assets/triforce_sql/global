@@ -1,0 +1,233 @@
+/* Création de la DATABASE */
+
+ CREATE DATABASE triforce_memory;
+
+/* Création des tables */
+
+    /* Table utilisateur */
+
+     CREATE TABLE utilisateur (
+        id INT UNSIGNED NOT NULL  AUTO_INCREMENT,
+        email VARCHAR(80) NOT NULL UNIQUE,
+        mot_de_passe VARCHAR(256) NOT NULL,
+        pseudo VARCHAR(15) NOT NULL UNIQUE,
+        date_inscription DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        date_connexion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id)
+        )
+        ENGINE = INNODB;
+
+    /* Table jeu */
+
+     CREATE TABLE jeu (
+        id INT UNSIGNED NOT NULL  AUTO_INCREMENT,
+        nom_du_jeu VARCHAR(20) NOT NULL,
+        PRIMARY KEY (id)
+        )
+        ENGINE = INNODB;
+
+    /* Table de score */
+
+        CREATE TABLE score(
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        id_joueur INT UNSIGNED NOT NULL,
+        id_jeu INT UNSIGNED NOT NULL,
+        difficulte_jeu VARCHAR(10) NOT NULL,
+        score_partie INT(3) NOT NULL,
+        date_heure DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY(id)
+        )
+        ENGINE = INNODB;
+
+        /* Modification matthieu type de donné score // ajout des unsigned
+            ALTER TABLE score
+            MODIFY id_joueur INT UNSIGNED NOT NULL,
+            MODIFY id_jeu INT UNSIGNED NOT NULL;
+        */
+
+    /* Table de chat */
+        CREATE TABLE messagerie(
+        id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        jeux_id INT UNSIGNED NOT NULL , 
+        expediteur_id INT UNSIGNED NOT NULL,
+        message_text TEXT NOT NULL, 
+        horodatage DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+         PRIMARY KEY (id)
+        )
+        ENGINE = INNODB;
+
+/* INSERT des different table */
+
+
+    /* INSERT de la table utilisateur */
+
+
+        INSERT INTO utilisateur (email, mot_de_passe, pseudo, date_inscription, date_connexion)
+        VALUE   ("enzo7825@gmail.com", "Laleaguedeslegendes", "Wolphen", "2023-04-03 12:30:45", "2023-10-16 13:17:01"),
+        ("slatozs@gmail.com", "Lalegendesdesleague", "Wsllappo", "2023-04-07 15:30:45", "2023-10-15 19:17:01"),
+        ("skysky@gmail.com", "leaguedeslalegende", "skyscrypersz", "2023-01-02 12:30:45", "2023-10-16 13:11:01"),
+        ("lalasagnedejean@gmail.com", "truellezs", "jeanlasagne38", "2022-04-03 13:30:45", "2023-9-16 13:17:01"),
+        ("roronoazozo@gmail.com", "manchonesz", "CookieVert", "2023-01-03 12:30:45", "2023-02-23 13:17:13")
+        ;
+
+    /* INSERT Table jeu */
+
+     INSERT INTO jeu (nom_du_jeu)
+        VALUE ("Triforce Memory");
+
+    /* INSERT Table score */
+
+        INSERT INTO score (id_joueur, id_jeu, difficulte_jeu, score_partie, date_heure)
+        VALUES  ('1', '1', 'Difficile', '60', '2023-10-16 12:30:12'),
+        ('2', '1', 'Difficile', '24', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facile', '31', '2023-10-16 12:30:12'),
+        ('4', '1', 'Difficile', '12', '2023-10-16 12:30:12'),
+        ('5', '1', 'Normal', '120', '2023-10-16 12:30:12'),
+        ('1', '1', 'Facile', '142', '2023-10-16 12:30:12'),
+        ('2', '1', 'Difficile', '189', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facile', '109', '2023-10-16 12:30:12'),
+        ('4', '1', 'Difficile', '200', '2023-10-16 12:30:12'),
+        ('5', '1', 'Difficile', '178', '2023-10-16 12:30:12'),
+        ('1', '1', 'Normal', '132', '2023-10-16 12:30:12'),
+        ('2', '1', 'Difficile', '89', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '76', '2023-10-16 12:30:12'),
+        ('4', '1', 'Normal', '65', '2023-10-16 12:30:12'),
+        ('5', '1', 'Normal', '90', '2023-10-16 12:30:12'),
+        ('1', '1', 'Facil', '123', '2023-10-16 12:30:12'),
+        ('2', '1', 'Normal', '154', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '176', '2023-10-16 12:30:12'),
+        ('4', '1', 'Difficile', '107', '2023-10-16 12:30:12'),
+        ('5', '1', 'Facil', '137', '2023-10-16 12:30:12'),
+        ('1', '1', 'Difficile', '178', '2023-10-16 12:30:12'),
+        ('2', '1', 'Normal', '267', '2023-10-16 12:30:12'),
+        ('3', '1', 'Facil', '376', '2023-10-16 12:30:12'),
+        ('4', '1', 'Difficile', '128', '2023-10-16 12:30:12'),
+        ('5', '1', 'Facil', '321', '2023-10-16 12:30:12');
+
+    /* INSERT Table chat */
+       INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
+        VALUES ('1', '3', 'Slt', '2023-10-16 10:19:55'),
+       ('1', '4', 'yo', '2023-10-16 10:19:56'),
+       ('1', '5', 'bonjour', '2023-10-16 10:19:57'),
+       ('1', '2', 'bjr', '2023-10-16 10:19:58'),
+       ('1', '3', 'salut', '2023-10-16 10:19:59'),
+       ('1', '2', 'wsh', '2023-10-16 10:20:00'),
+       ('1', '5', 'slt', '2023-10-16 10:20:01'),
+       ('1', '3', 'ca va', '2023-10-16 10:20:02'),
+       ('1', '4', 'bien ou quoi', '2023-10-16 10:20:03'),
+       ('1', '3', 'ca se passe', '2023-10-16 10:20:04'),
+       ('1', '2', 'ca dit quoi', '2023-10-16 10:20:05'),
+       ('1', '5', 'le chatttt monte vitttee', '2023-10-16 10:20:06'),
+       ('1', '1', 'gg', '2023-10-16 10:20:07'),
+       ('1', '4', 'gg', '2023-10-16 10:20:08'),
+       ('1', '3', 'c chaud', '2023-10-16 10:20:09'),
+       ('1', '4', 'si si zelda', '2023-10-16 10:20:10'),
+       ('1', '5', 'link incroyable', '2023-10-16 10:20:11'),
+       ('1', '2', 'c quoi le nom', '2023-10-16 10:20:12'),
+       ('1', '1', 'triforce' 'memory', '2023-10-16 10:20:13'),
+       ('1', '3', 'gg', '2023-10-16 10:20:14'),
+       ('1', '4', 'bien jouer', '2023-10-16 10:20:15'),
+       ('1', '2', 'ca donne envie de jouer a zelda', '2023-10-16 10:20:16'),
+       ('1', '1', 'graaaaavvvvvvveee', '2023-10-16 10:20:16'),
+       ('1', '3', 'yo les gaaaaaaa', '2023-10-16 10:20:17'),
+       ('1', '1', 'ca se passe', '2023-10-16 10:20:19');
+
+/* requête insciption mail mdp pseudo */
+
+    INSERT INTO utilisateur (email, mot_de_passe, pseudo)
+    VALUES ("email@email.com", "entrée mdp", "entrée pseudo");
+
+/* Changement de mot de passe / email */
+
+    UPDATE utilisateur
+    SET mot_de_passe= "nouveau mots de passe"
+    WHERE id="id de la personne voulant changer de mot de passe";
+
+    UPDATE utilisateur
+    SET email= "nouvel email"
+    WHERE id="id de la personne voulant changer d'email";
+
+/* requête de connexion */
+
+    SELECT *
+    FROM utilisateur
+    WHERE email = "entrée email"
+    AND mot_de_passe = "entrée mdp";
+
+/* Requête jeu/nom du joueur/difficulté/score + Filtre */
+
+    SELECT U.pseudo, J.nom_du_jeu, S.difficulte_jeu, S.score_partie
+    FROM utilisateur as U 
+    INNER JOIN score as S 
+        ON U.id = S.id_joueur
+    INNER JOIN jeu as J
+        ON J.id = S.id_jeu
+    WHERE S.difficulte_jeu= "Difficile"
+    ORDER BY J.nom_du_jeu, 
+    CASE S.difficulte_jeu 
+        WHEN "Facil" THEN 1 
+        WHEN "Normal" THEN 2
+        ELSE 3
+        END,
+    S.score_partie;
+
+/* clef etrangère */
+
+    ALTER TABLE score
+    ADD FOREIGN KEY (id_jeu) REFERENCES jeu(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+    ALTER TABLE score 
+    ADD FOREIGN KEY (id_joueur) REFERENCES utilisateur(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+    ALTER TABLE messagerie
+    ADD FOREIGN KEY (expediteur_id) REFERENCES utilisateur(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/* Anti doublon du score */
+
+    SELECT id_joueur, difficulte_jeu, score_partie
+    FROM score
+    WHERE id_joueur = "joueur qui joue", difficulte_jeu ="difficulté du jeu", id_jeu ="id du jeu";
+
+    UPDATE score_partie
+    FROM score
+    WHERE id = "du score de la partie";
+
+    INSERT INTO score (id_joueur, difficulte_jeu, id_jeu, score)
+    VALUES (id_joueur1, Difficile, 1, score de la partie);
+
+/* nouvel ligne correspondante au chat dans la base de données */
+
+    INSERT INTO messagerie ( jeux_id, expediteur_id, message_text, horodatage)
+        VALUES ('2', '5', 'Slt bg', '2023-10-16 10:19:55');
+
+/* récupéré les messages des dernières 24H */
+
+    /*  
+    requête test 
+
+    SELECT expediteur_id, message_text, horodatage                                
+    FROM messagerie
+    WHERE  horodatage BETWEEN "2023-10-15 10:20:00" AND "2023-10-16 10:20:00";
+    */
+
+    SELECT U.pseudo, M.message_text, M.horodatage, (U.id = M.expediteur_id) as isSender
+    FROM utilisateur as U 
+    INNER JOIN messagerie as M 
+        ON U.id = M.expediteur_id
+    WHERE  M.horodatage >= NOW() - INTERVAL 1 DAY;
+
+/* Recherche "AU" */
+
+    /*  
+    Requête test
+
+    SELECT *
+    FROM score
+    WHERE pseudo LIKE "%au%";
+     */
+
+    SELECT S.*, U.pseudo
+    FROM utilisateur as U 
+    INNER JOIN score as S 
+        ON U.id = S.id_joueur
+    WHERE U.pseudo LIKE '%au%';

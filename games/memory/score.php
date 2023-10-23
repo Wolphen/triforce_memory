@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choix du niveau</title>
-    <link rel="stylesheet" href="assets/main.css">
-    <link rel="stylesheet" href="assets/footer.css">
+    <title>Triforce memory</title>
     <link rel="stylesheet" href="assets/header.css">
+    <link rel="stylesheet" href="assets/footer.css">
+    <link rel="stylesheet" href="assets/main.css">
     <link rel="icon" href="assets/img/téléchargé.jpg" type="image/x-icon">
+    <script src="assets/scripts.js"></script>
 </head>
+
 <body>
+    
+
     <header>
         <div class="t1"><a href="index.html">Triforce memory</a></div>
 
@@ -22,63 +26,83 @@
             <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
         </nav>
     </header>
+
     <div class="banniere">
-        <h1 class="banner_title">Sélection du niveau et du thème!</h1>
+        <h1 class = "scores">S C O R E S</h1>
     </div>
-    <br>
-    <div class="rules_container">
-        <div class="rules">
-            <h2 class="rules_title">Règles du jeu:</h2>
-            <div class="rules_read">
-                Toutes les cartes sont étalées faces cachées sur la table. Le premier joueur retourne deux cartes. 
-                Si les images sont identiques, il gagne la paire constituée et rejoue. Si les images sont différentes, 
-                il les repose faces cachées là où elles étaient et c'est au joueur suivant de jouer.
-            </div>
+
+    <table>
+        <thead>
+                <tr class ="truie">
+                    <th class = >Joueur</th><th>Niveau</th><th>Jour</th>
+                    <tr><td>Link</td><td>Normal</td><td>11/10/2023</td> </tr>
+                    
+                </tr>
+                   
+                
+                <tr>
+                    
+                </tr>   
             
-        </div>
-    </div>
-    <div class="ontop">
-        <!-- Les e sont utilisés ici comme uniter de mesure pour espacer les textes sans se casser la tête  -->
-        <p class = "colorz">eeeeeeeeeeeeeeeeeeeeeeeeeeeeee<strong class ="onle"> Thème ROYAL </strong> 
-            eeeeeeeeeeeeeeeeeeeeeeeee   <strong class = onle> Thème HÉROS</strong> 
-            eeeeeeeeeeeeeeeeeeeeeeeee <strong class ="onle"> Thème VILAIN </strong> 
-        </p> 
+        </thead>
         
+    </table>
 
+    <table>
+        <thead>
+                <tr>
+                    <th class ="maison">Scores</th>   
+                </tr>
+               <tr>
+                    <td>0</td>  
+               </tr>  
+        </thead>
+        
+    </table>
+    
+    <div class="dsip">
+        <div class="hi3"><a href="select_level.html">REJOUER</a></div>
     </div>
-    <div class = "alltheme">
-        <div class ="royal">
-            <p class = "bigboy">
-                <span class = "royaa">
-                    <a href="game_royal.html">  FACILE : 4x4 <br><br></a>
-                    <a href="game_royal.html"> NORMAL : 8x8 <br><br></a>
-                    <a href="game_royal.html"> DIFFICILE : 12x12</a>
-            </span>
-            </p>
+    
+    <div class="chatbox_body">
+        <div class="chat_top">
+            <img src="assets/img/link.png" alt="pp link" class="link_larbi">
+            Chat général
         </div>
-        <div class ="heroez">
-            <p class = "bigboy">
-                <span class = "heroo">
-                <a href="game_link.html">  FACILE : 4x4 <br><br></a>
-                <a href="game_link.html"> NORMAL : 8x8 <br><br></a>
-                <a href="game_link.html"> DIFFICILE : 12x12</a>
-            </span>
-             </p>
+        <div class="chat_chat">
+            <div class="block_user">
+                <p class="chat_username">
+                    Moi
+                </p>
+                <p class="chat_user">
+                    Hello
+                </p>
+                <p class="chat_time">
+                    Aujourd'hui a 15h22
+                </p>
+            </div>
+            <div class="big_block">
+                <img src="assets/img/revali.png" alt="pp revali" class="revali_enzo">
+                <div class="block_other">
+                    <p class="chat_username">
+                        Arthur
+                    </p>
+                    <p class="chat_other">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                    <p class="chat_time">
+                        Aujourd'hui a 15h23
+                    </p>
+                </div>
+            </div>
+            <form action="POST" action="traitement.php" class="chat_input">
+                <input type="text" name="chat" id="chat" placeholder="Votre message...">
+                <input type="submit" value="Envoyer" class="send_input">
+            </form>
+        </div>
+    </div>
+   
 
-        </div>
-        <div class = "villainz">
-            <p class = "bigboy">
-                <span class = "villaa">
-                    <a href="game_vilain.html">  FACILE : 4x4 <br><br></a>
-                    <a href="game_vilain.html"> NORMAL : 8x8 <br><br></a>
-                    <a href="game_vilain.html"> DIFFICILE : 12x12</a>
-                </span>
-             </p>
-        </div>
-
- 
-    </div>  
-    </body>
     <footer>
         <div class="wrapper">
             <section class="wrap">
@@ -93,7 +117,7 @@
                 <ul class="footer_list">
                     <li><a href="select_level.html" class = "fter"><span class="white">Jouer!</a></span></li>
                     <li><a href="score.html" class = "fter"><span class="white">Les scores</span></a></li>
-                <li><a href="contact.html" class = "fter"><span class="white">Nous contacter</span></a></li>
+                    <li><a href="contact.html" class = "fter"><span class="white">Nous contacter</span></a></li>
                 </ul>
             </section>
         </div>
@@ -106,4 +130,7 @@
         </section><br><br><br><br>
         <p class="copyright">Copyright © 2022 Tous droits réservés</p>
     </footer>
-    </html>
+    
+    
+</body>
+</html>
