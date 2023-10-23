@@ -3,6 +3,11 @@
 * {
     color : white;
 }
+.active {
+     /* Couleur de fond pour la page active */
+    color: orange; /* Couleur du texte pour la page active */
+}
+
 
 .noot:hover{
     color:white;
