@@ -10,14 +10,13 @@
 </head>
 <header>
     <div class="t1"><a href="index.php">Triforce memory</a></div>
-
     <nav>
-        <div class="nav2"><a href="<?=PROJECT_FOLDER?>index.php">ACCUEIL</a></div>
-            <div class="nav1"><a href="<?=PROJECT_FOLDER?>select_level.php">JEU</a></div>
-            <div class="nav1"><a href="<?=PROJECT_FOLDER?>games/memory/score.php">SCORES</a></div>
-            <div class="nav1"><a href="<?=PROJECT_FOLDER?>contact.php"> NOUS CONTACTER</a></div>
-            <div class ="nav1"><a href="<?=PROJECT_FOLDER?>connexion.php">CONNEXION</a></div>
-            <div class ="nav1"><a href="<?=PROJECT_FOLDER?>myAccount.php">MON COMPTE</a></div>
+        <div class="nav2"><a href="<?=PROJECT_FOLDER?>index.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'index.php') ? 'class="active"' : '' ?>>ACCUEIL</a></div>
+            <div class="nav1"><a href="<?=PROJECT_FOLDER?>select_level.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'select_level.php') ? 'class="active"' : '' ?>>JEU</a></div>
+            <div class="nav1"><a href="<?=PROJECT_FOLDER?>games/memory/score.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'games/memory/score.php') ? 'class="active"' : '' ?>>SCORES</a></div>
+            <div class="nav1"><a href="<?=PROJECT_FOLDER?>contact.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'contact.php') ? 'class="active"' : '' ?>> NOUS CONTACTER</a></div>
+            <div class ="nav1"><a href="<?=PROJECT_FOLDER?>connexion.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'connexion.php') ? 'class="active"' : '' ?>>CONNEXION</a></div>
+            <div class ="nav1"><a href="<?=PROJECT_FOLDER?>myAccount.php"<?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER.'myAccount.php') ? 'class="active"' : '' ?>>MON COMPTE</a></div>
     </nav>
 </header>
 </html>
