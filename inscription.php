@@ -1,33 +1,9 @@
+<?php require "utils/commom.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triforce memory</title>
- 
-    <link rel="stylesheet" href="assets/header.css">
-    <link rel="stylesheet" href="assets/footer.css">
-    <link rel="stylesheet" href="assets/main.css">
-    <link rel="icon" href="assets/img/téléchargé.jpg" type="image/x-icon">
-    <script src="assets/scripts.js"></script>
-</head>
-
+<?php require 'partials/head.php';?>
+<?php require 'partials/heade.php';?>
 <body>
-
-    
-
-    <header>
-        <div class="t1"><a href="index.html">Triforce memory</a></div>
-
-        <nav>
-            <div class="nav2"><a href="index.html">ACCUEIL</a></div>
-            <div class="nav1"><a href="select_level.html">JEU</a></div>
-            <div class="nav1"><a href="score.html">SCORES</a></div>
-            <div class="nav1"><a href="contact.html"> NOUS CONTACTER</div></a>
-            <div class ="nav1"><a href="connexion.html">CONNEXION</a></div>
-            <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
-        </nav>
-    </header>
 
    <div class="bannierel">
         <h1>I N S C R I P T I O N</h1>
