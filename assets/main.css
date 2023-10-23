@@ -768,6 +768,7 @@ body::-webkit-scrollbar {
 }
 
 @media screen and (max-width: 768px){
+    /* Code du selec_level.html */
     .rules, .theme_heros ,.theme_vilains, .theme_royal{
         color: white;
     }
