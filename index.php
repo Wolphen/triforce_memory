@@ -68,7 +68,7 @@
 
                     <div class = "carreg">
                         <p>
-                            <strong>1020</strong> <br> Joueurs Connectés
+                            <strong> <?php echo joueursInscrits() ?> </strong> <br> Joueurs Connectés
                             
                     
                     </p>

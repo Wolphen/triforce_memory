@@ -8,3 +8,11 @@ define('PROJECT_FOLDER', '/triforce_memory/');
 define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT_FOLDER); 
 
 session_start(); 
+
+function joueursInscrits() : int{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS subscribeNumber FROM utilisateur');
+    $pdoStatement->execute();
+    $result = $pdoStatement->fetch();
+    return $result->subscribeNumber;
+}
