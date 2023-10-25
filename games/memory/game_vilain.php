@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>title</title>
@@ -15,18 +16,19 @@
         <div class="nav1"><a href="select_level.html">JEU</a></div>
         <div class="nav1"><a href="score.html">SCORES</a></div>
         <div class="nav1"><a href="contact.html"> NOUS CONTACTER</div></a>
-        <div class ="nav1"><a href="connexion.html">CONNEXION</a></div>
-        <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
+        <div class="nav1"><a href="connexion.html">CONNEXION</a></div>
+        <div class="nav1"><a href="myAccount.html">MON COMPTE</a></div>
     </nav>
 </header>
+
 <body>
     <p class="difficulty">Difficile: 12 par 12</p>
     <div class="royal_board2">
-        
+
         <h1 class="menu_pause">Pause</h1>
         <table class="board12">
             <tr>
-                <th><img src="assets/img/theme.villain/1.jpg" alt="Dos de cartes" class="card_img"></th>
+                <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/1.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="assets/img/theme.villain/2.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="assets/img/theme.villain/3.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="assets/img/theme.villain/4.jpg" alt="Dos de cartes" class="card_img"></th>
@@ -314,5 +316,6 @@
         <h1 class="menu_game">Score: 20 sec</h1>
     </div>
 </body>
-<?php require SITE_ROOT.'partials/footer.php';?>
+<?php require SITE_ROOT . 'partials/footer.php'; ?>
+
 </html>
