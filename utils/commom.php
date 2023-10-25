@@ -149,23 +149,18 @@ function subscribeForm(string $mail, string $pseudo, string $passwrd, string $pa
     }
 }
 
-function connexionUser(string $emailUser, string $passwrdCo): void {
-    try {
+function connexionUser(string $emailUser, string $passwrdCo): ?string {
+    
         //code...
-        $hashdPassword = hash('sha256', $passwrdCo);
+        $hashdPassword = hash('sha256', $_GET['passwrdCo']);
         $pdo = requeteConnexion();
-        $pdoStatement = $pdo->prepare("SELECT email, mot_de_passe as mdp FROM utilisateur WHERE email = :mail and mot_de_passe = :passwrdCo");
-        $pdoStatement->execute([":mail"=> "$emailUser", ":passwrdCo"=> "$hashdPassword"]);
+        $pdoStatement = $pdo->prepare("SELECT id,email, mot_de_passe as mdp FROM utilisateur WHERE email = :mail");
+        $pdoStatement->execute([":mail"=> "$emailUser"]);
         $result = $pdoStatement->fetch();
         if ($result->mdp == $hashdPassword) {
-            echo "connecté";
+            return $result->id;
         }
-        else {
-            echo "error";
-        }
-    }
-        catch(PDOException){
-        echo "error";
-    }
+        return null;
+       
    
 }

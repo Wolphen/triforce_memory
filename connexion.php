@@ -10,10 +10,7 @@
         <h1>C O N N E X I O N</h1>
     </div>
 
-    <?php if (isset($_GET['emailUser'])){
-                connexionUser( ($_GET['emailUser']), ($_GET['passwrdCo']));
-    }
-    ?>
+  
 <!-- Code de connexion ci dessous -->
     <form class = "formm" method ="GET">
         <input type="text" id="mail" name="emailUser" placeholder="Email" required class ="inputtexte" >
@@ -21,10 +18,21 @@
         <input type="password" id="password"name="passwrdCo" placeholder="Mot de passe" required class ="inputtexte" >
         <br>
         <input type="submit" value="Connexion" class ="inputsubmit">  
-         <a href="inscription.php"><input type="button" value="Pas de compte ? Crée un compte ici." class ="creecompte"></a>
+        <label for="connexion" class ="creecompte"><a  href="<?php echo PROJECT_FOLDER?>inscription.php"> Pas de compte ? Crée un compte ici.</a></label>
         
+      <?php if (isset($_GET['emailUser'])){
+               $userConnectionOk= connexionUser( ($_GET['emailUser']), ($_GET['passwrdCo']));
+               if (!$userConnectionOk) {  ?>
+                <p class="warning">Identifiants incorrects. Veuillez réessayer.</p>
+                <?php
+            } else {
+                header('Location: select_level.php');
+            }
+    }
+
+
+    ?>
     </form>
-    
     
     <?php require SITE_ROOT.'partials/footer.php';?>
     
