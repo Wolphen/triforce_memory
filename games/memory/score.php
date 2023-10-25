@@ -14,7 +14,7 @@
         <div class="scoresearch">
             <div class="bigdiv">
 
-                <input name="pseudo" placeholder="Pseudo" class="contact_formule" />
+                <input name="pseudo" placeholder="pseudo" class="contact_formule" />
             </div>
             <div>
 

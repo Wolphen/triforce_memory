@@ -866,3 +866,8 @@ body::-webkit-scrollbar {
 .submit_contactt:hover{
     transform: scale(1.1);
 }
+.warning {
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:small;
+}

@@ -9,36 +9,38 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT_FOLDER);
 
 session_start();
 
-
-function subscribedPlayer(): int
+function joueursInscrits(): int
 {
     $pdo = requeteConnexion();
-    $pdoStatement = $pdo->prepare('SELECT COUNT(*) AS userNumber FROM utilisateur');
+    $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS subscribeNumber FROM utilisateur');
     $pdoStatement->execute();
     $result = $pdoStatement->fetch();
-    return $result->userNumber;
+    return $result->subscribeNumber;
 }
-function gamePlayed(): int
+
+function tempsRecord(): int
 {
     $pdo = requeteConnexion();
-    $pdoStatement = $pdo->prepare('SELECT COUNT(*) AS gamePlayed FROM score');
+    $pdoStatement = $pdo->prepare('SELECT MIN(score_partie) AS bestTime FROM score');
+    $pdoStatement->execute();
+    $result = $pdoStatement->fetch();
+    return $result->bestTime;
+}
+
+function partiesJouees(): int
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS gamePlayed FROM score');
     $pdoStatement->execute();
     $result = $pdoStatement->fetch();
     return $result->gamePlayed;
 }
-function bestTime(): int
-{
-    $pdo = requeteConnexion();
-    $pdoStatement = $pdo->prepare('SELECT score_partie AS bestTimer FROM score ORDER BY score_partie LIMIT 1');
-    $pdoStatement->execute();
-    $result = $pdoStatement->fetch();
-    return $result->bestTimer;
-}
-function playerOn(): int
+
+function joueursConnectes(): int
 {
     $pdo = requeteConnexion();
     $users = count(glob(session_save_path() . '/*'));
-    return $users;
+    return 0;
 }
 
 function displayAllGameScores(): string
@@ -96,18 +98,69 @@ function displayOnePlayerGameScores(): string
     return $display;
 }
 
-function checkMailValidity($mail): void
+function checkMailValidity(string $mail): bool
 {
+    $isMailValid = true;
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        $isMailValid = false;
         throw new Exception("Le format de l'email n'est pas valide.");
     }
-    try {
-        $pdo = requeteConnexion();
-        $pdoStatement = $pdo->prepare("INSERT INTO utilisateur (mail) VALUES (mail = :mail");
-        $pdoStatement->execute([
-            ":mail" => $mail
-        ]);
-    } catch (PDOException $e) {
-        throw new Exception("Erreur de connexion.");
+    return $isMailValid;
+}
+
+function checkPseudoValidity(string $pseudo): bool
+{
+    $isPseudoValid = true;
+    if (strlen($pseudo) < 4 || strlen($pseudo) > 16) {
+        $isPseudoValid = false;
+        throw new Exception("Le pseudo doit être compris entre 4 et 15 caractères");
     }
+
+    return $isPseudoValid;
+}
+function checkPasswordValidity(string $passwrd, string $passwordConfirm): bool
+{
+
+    $isPasswordValid = true;
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/', $passwrd)) {
+        $isPasswordValid = false;
+        throw new Exception("Doit contenir une minuscule, une majuscule, un chiffre, un caractère spécial, et de minimum 8 caractères");
+    } else if ($passwrd != $passwordConfirm) {
+        $isPasswordValid = false;
+        throw new Exception("Les mots de passes ne correspondent pas!");
+    }
+    return $isPasswordValid;
+}
+function subscribeForm(string $mail, string $pseudo, string $passwrd, string $passwordConfirm): void
+{
+    $hashedPassword = hash('sha256', $passwrd);
+    if (checkMailValidity($mail) && checkPseudoValidity($pseudo) && checkPasswordValidity($passwrd, $passwordConfirm)) {
+        try {
+            $pdo = requeteConnexion();
+            $pdoStatement = $pdo->prepare("INSERT INTO utilisateur (email, pseudo, mot_de_passe)
+            VALUES (:mail, :pseudo, :passwrd)");
+            $pdoStatement->execute([":mail" => $mail, ":pseudo" => $pseudo, ":passwrd" => $hashedPassword]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            throw new Exception("Erreur de connexion.");
+        }
+    } else {
+        throw new Exception("Il y a une erreur dans le mail ou le pseudo.");
+    }
+}
+
+function connexionUser(string $emailUser, string $passwrdCo): ?string {
+    
+        //code...
+        $hashdPassword = hash('sha256', $_GET['passwrdCo']);
+        $pdo = requeteConnexion();
+        $pdoStatement = $pdo->prepare("SELECT id,email, mot_de_passe as mdp FROM utilisateur WHERE email = :mail");
+        $pdoStatement->execute([":mail"=> "$emailUser"]);
+        $result = $pdoStatement->fetch();
+        if ($result->mdp == $hashdPassword) {
+            return $result->id;
+        }
+        return null;
+       
+   
 }
