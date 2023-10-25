@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>Triforce Memory</title>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="assets/header.css">
     <link rel="icon" href="assets/img/téléchargé.jpg" type="image/x-icon">
 </head>
+
 <body>
     <header>
         <div class="t1"><a href="index.html">Triforce memory</a></div>
@@ -17,13 +19,13 @@
             <div class="nav1"><a href="select_level.html">JEU</a></div>
             <div class="nav1"><a href="score.html">SCORES</a></div>
             <div class="nav1"><a href="contact.html"> NOUS CONTACTER</div></a>
-            <div class ="nav1"><a href="connexion.html">CONNEXION</a></div>
-            <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
+            <div class="nav1"><a href="connexion.html">CONNEXION</a></div>
+            <div class="nav1"><a href="myAccount.html">MON COMPTE</a></div>
         </nav>
     </header>
     <p class="difficulty">Difficile: 12 par 12</p>
     <div class="royal_board">
-        
+
         <h1 class="menu_pause">Pause</h1>
         <table class="board12">
             <tr>
@@ -326,9 +328,9 @@
         <section class="wrap">
             <h3>Triforce Memory</h3>
             <ul class="footer_list">
-                <li><a href="select_level.html" class = "fter"><span class="white">Jouer!</a></span></li>
-                <li><a href="score.html" class = "fter"><span class="white">Les scores</span></a></li>
-            <li><a href="contact.html" class = "fter"><span class="white">Nous contacter</span></a></li>
+                <li><a href="select_level.html" class="fter"><span class="white">Jouer!</a></span></li>
+                <li><a href="score.html" class="fter"><span class="white">Les scores</span></a></li>
+                <li><a href="contact.html" class="fter"><span class="white">Nous contacter</span></a></li>
             </ul>
         </section>
     </div>
@@ -341,4 +343,5 @@
     </section><br><br><br><br>
     <p class="copyright">Copyright © 2022 Tous droits réservés</p>
 </footer>
+
 </html>

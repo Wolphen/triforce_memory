@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <title>title</title>
@@ -7,22 +8,23 @@
     <link rel="stylesheet" href="assets/footer.css">
     <link rel="stylesheet" href="assets/header.css">
 </head>
+
 <body>
     <header>
         <div class="t1"><a href="index.html">Triforce memory</a></div>
-    
+
         <nav>
             <div class="nav2"><a href="index.html">ACCUEIL</a></div>
             <div class="nav1"><a href="select_level.html">JEU</a></div>
             <div class="nav1"><a href="score.html">SCORES</a></div>
             <div class="nav1"><a href="contact.html"> NOUS CONTACTER</div></a>
-            <div class ="nav1"><a href="connexion.html">CONNEXION</a></div>
-            <div class ="nav1"><a href="myAccount.html">MON COMPTE</a></div>
+            <div class="nav1"><a href="connexion.html">CONNEXION</a></div>
+            <div class="nav1"><a href="myAccount.html">MON COMPTE</a></div>
         </nav>
     </header>
     <p class="difficulty" id="difficult">Difficile: 12 par 12</p>
     <div class="royal_board1">
-        
+
         <h1 class="menu_pause">Pause</h1>
         <table class="board12">
             <tr>
@@ -325,9 +327,9 @@
             <section class="wrap">
                 <h3>Triforce Memory</h3>
                 <ul class="footer_list">
-                    <li><a href="select_level.html" class = "fter"><span class="white">Jouer!</a></span></li>
-                    <li><a href="score.html" class = "fter"><span class="white">Les scores</span></a></li>
-                <li><a href="contact.html" class = "fter"><span class="white">Nous contacter</span></a></li>
+                    <li><a href="select_level.html" class="fter"><span class="white">Jouer!</a></span></li>
+                    <li><a href="score.html" class="fter"><span class="white">Les scores</span></a></li>
+                    <li><a href="contact.html" class="fter"><span class="white">Nous contacter</span></a></li>
                 </ul>
             </section>
         </div>
@@ -341,4 +343,5 @@
         <p class="copyright">Copyright © 2022 Tous droits réservés</p>
     </footer>
 </body>
+
 </html>

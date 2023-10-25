@@ -1,10 +1,11 @@
-<?php require "utils/commom.php" ?>
+<?php require_once "utils/commom.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
-<?php require 'partials/head.php';?>
-<?php require 'partials/heade.php';?>
+<?php require 'partials/head.php'; ?>
+<?php require 'partials/heade.php'; ?>
+
 <body>
-<div class="contact_main">
+    <div class="contact_main">
         <div class="banniere">
             <h1 class="banner_title">Nous Contacter</h1>
         </div>
@@ -35,19 +36,20 @@
                 </p>
             </div>
         </div>
-        
-            <!-- code pour demander le contact -->
-            <form method="POST" action="traitement.php" class="block_form">
-                <input type="text" name="nom" id="nom" placeholder="Nom" class="contact_form">
-                <input type="text" name="mail" id="mail" placeholder="Email" class="contact_form"><br>                
-                <input type="text" name="sujet" id="sujet" placeholder="Sujet" class="subject_form"><br>
-                <textarea name="message" id="message" placeholder="Message" class="textform"></textarea><br>
-                <input type="submit" value="Envoyer" class="submit_contact">
-            </form>
-        
+
+        <!-- code pour demander le contact -->
+        <form method="POST" action="traitement.php" class="block_form">
+            <input type="text" name="nom" id="nom" placeholder="Nom" class="contact_form">
+            <input type="text" name="mail" id="mail" placeholder="Email" class="contact_form"><br>
+            <input type="text" name="sujet" id="sujet" placeholder="Sujet" class="subject_form"><br>
+            <textarea name="message" id="message" placeholder="Message" class="textform"></textarea><br>
+            <input type="submit" value="Envoyer" class="submit_contact">
+        </form>
+
     </div>
-   
-    <?php require SITE_ROOT.'partials/footer.php';?>
-    
+
+    <?php require SITE_ROOT . 'partials/footer.php'; ?>
+
 </body>
+
 </html>
