@@ -118,6 +118,19 @@ function checkPseudoValidity(string $pseudo): bool
 
     return $isPseudoValid;
 }
+function checkPasswordValidity2(string $newPasswrd, string $newPasswordConfirm): bool
+{
+
+    $isPasswordValid = true;
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/', $newPasswrd)) {
+        $isPasswordValid = false;
+        throw new Exception("Doit contenir une minuscule, une majuscule, un chiffre, un caractère spécial, et de minimum 8 caractères");
+    } else if ($newPasswrd != $newPasswordConfirm) {
+        $isPasswordValid = false;
+        throw new Exception("Les mots de passes ne correspondent pas!");
+    }
+    return $isPasswordValid;
+}
 function checkPasswordValidity(string $passwrd, string $passwordConfirm): bool
 {
 
@@ -149,18 +162,55 @@ function subscribeForm(string $mail, string $pseudo, string $passwrd, string $pa
     }
 }
 
-function connexionUser(string $emailUser, string $passwrdCo): ?string {
-    
-        //code...
-        $hashdPassword = hash('sha256', $_GET['passwrdCo']);
+function connexionUser(string $emailUser, string $passwrdCo): ?object
+{
+
+    $hashdPassword = hash('sha256', $_GET['passwrdCo']);
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare("SELECT *, mot_de_passe as mdp FROM utilisateur WHERE email = :mail");
+    $pdoStatement->execute([":mail" => "$emailUser"]);
+    $result = $pdoStatement->fetch();
+    if ($result->mdp == $hashdPassword) {
+        return $result;
+    }
+    return null;
+}
+
+function changeEmail(string $oldMail, string $newMail, string $passwrd): ?string
+{
+    $pdo = requeteConnexion();
+    $pdoPwd = $pdo->prepare("SELECT mot_de_passe as mdp from utilisateur where id = :id");
+    $pdoPwd->execute([":id" => $_SESSION["userId"]]);
+    $userinfo = $pdoPwd->fetch();
+    if ($userinfo->mdp == hash('sha256', $passwrd)) {
+        $pdoStatement = $pdo->prepare("UPDATE utilisateur SET email = :mail WHERE id = :id AND email = :oldMail");
+        $pdoStatement->execute([":mail" => $newMail, ":id" => $_SESSION['userId'], "oldMail" => $oldMail]);
+
+        return "oui";
+    }
+}
+
+
+
+function changePasswrd(string $passwrd, string $newPasswrd, string $newPasswrdConfirm): void
+{
+    if (checkPasswordValidity2($newPasswrd, $newPasswrdConfirm)) { 
+
+        $hashdPassword = hash('sha256', $passwrd); 
+        $newHashdPasswordd = hash('sha256', $newPasswrd);
         $pdo = requeteConnexion();
-        $pdoStatement = $pdo->prepare("SELECT id,email, mot_de_passe as mdp FROM utilisateur WHERE email = :mail");
-        $pdoStatement->execute([":mail"=> "$emailUser"]);
-        $result = $pdoStatement->fetch();
-        if ($result->mdp == $hashdPassword) {
-            return $result->id;
-        }
-        return null;
-       
-   
+        $pdoPwd = $pdo->prepare("SELECT mot_de_passe as mdp from utilisateur where id = :id");
+        $pdoPwd->execute([":id" => $_SESSION["userId"]]);
+        $userinfo = $pdoPwd->fetch();
+        try {($userinfo->mdp == $hashdPassword);
+        $pdoStatement = $pdo->prepare("UPDATE utilisateur SET mot_de_passe = :newPasswrd WHERE id = :id");
+        $pdoStatement->execute([ ":newPasswrd" => $newHashdPasswordd, ":id" => $_SESSION['userId']]);
+        echo 'Changement de mot de passe réussis';
+    } catch (PDOException $e) {
+        echo 'Erreur lors du changement de mot de passe, veuillez réessayez';
+}
+    }
+    else {
+        echo 'Il faut que les nouveaux mots de passes soit identique';
+    }
 }

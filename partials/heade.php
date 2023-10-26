@@ -1,5 +1,5 @@
 <html lang="fr">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,16 @@
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>games/memory/score.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'games/memory/score.php') ? 'class="active"' : '' ?>>SCORES</a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>contact.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'contact.php') ? 'class="active"' : '' ?>> NOUS CONTACTER</a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>connexion.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'connexion.php') ? 'class="active"' : '' ?>>CONNEXION</a></div>
-        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>myAccount.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'myAccount.php') ? 'class="active"' : '' ?>>MON COMPTE</a></div>
+
+        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>myAccount.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'myAccount.php') ? 'class="active"' : '' ?>>
+        <?php if (isset($_SESSION['pseudo'])) {
+            echo $_SESSION['pseudo'];
+        }
+        else {
+            echo 'MON COMPTE';
+        }?>
+        
+    </a></div>
     </nav>
 </header>
 
