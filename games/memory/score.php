@@ -5,7 +5,7 @@
 <?php require SITE_ROOT . 'partials/head.php'; ?>
 <?php require SITE_ROOT . 'partials/heade.php'; ?>
 
-  
+
 <body>
     <div class="banniere">
         <h1 class="scores">S C O R E S</h1>
@@ -34,7 +34,7 @@
 
             </tr>
 
-            <?php if (isset($_GET['pseudo']) && $_GET['pseudo'] != "" ){
+            <?php if (isset($_GET['pseudo']) && $_GET['pseudo'] != "") {
                 echo displayOnePlayerGameScores();
             } else {
                 echo displayAllGameScores();

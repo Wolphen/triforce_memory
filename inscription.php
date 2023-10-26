@@ -1,5 +1,5 @@
 <?php require "utils/commom.php" ?>
-<?= require_once SITE_ROOT . "utils/database.php"; ?>
+<?php require_once SITE_ROOT . "utils/database.php"; ?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php require 'partials/head.php'; ?>
@@ -13,8 +13,9 @@ $passwordConfirm = $_GET['passwordConfirm'] ?? '';
 
 
 try {
-    if (isset($_GET['email'], $_GET['pseudo'],$_GET['passwrd'],$_GET['passwordConfirm'])) {
-       subscribeForm($email, $pseudo, $passwrd, $passwordConfirm);
+    if (isset($_GET['email'], $_GET['pseudo'], $_GET['passwrd'], $_GET['passwordConfirm'])) {
+        subscribeForm($email, $pseudo, $passwrd, $passwordConfirm);
+        echo '<p>Inscription réussis</p>';
     }
 } catch (Exception $e) {
     echo $e->getMessage();
@@ -52,7 +53,7 @@ try {
     </div>
 
 
-    <?= require_once SITE_ROOT . "partials/footer.php"; ?>
+    <?php require_once SITE_ROOT . "partials/footer.php"; ?>
 
 </body>
 
