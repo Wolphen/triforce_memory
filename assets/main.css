@@ -340,7 +340,11 @@ td {
 .invi {
     color: transparent;
 }
-
+.recherche {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 
 /* Code du chat box */

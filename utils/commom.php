@@ -3,16 +3,207 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('ADMIN_MAIL', 'mail@gmail.com'); 
-define('PROJECT_FOLDER', '/triforce_memory/'); 
-define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT_FOLDER); 
+define('ADMIN_MAIL', 'mail@gmail.com');
+define('PROJECT_FOLDER', '/triforce_memory/');
+define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT_FOLDER);
 
-session_start(); 
+session_start();
 
-function joueursInscrits() : int{
+function joueursInscrits(): int
+{
     $pdo = requeteConnexion();
     $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS subscribeNumber FROM utilisateur');
     $pdoStatement->execute();
     $result = $pdoStatement->fetch();
     return $result->subscribeNumber;
+}
+
+function tempsRecord(): int
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare('SELECT MIN(score_partie) AS bestTime FROM score');
+    $pdoStatement->execute();
+    $result = $pdoStatement->fetch();
+    return $result->bestTime;
+}
+
+function partiesJouees(): int
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS gamePlayed FROM score');
+    $pdoStatement->execute();
+    $result = $pdoStatement->fetch();
+    return $result->gamePlayed;
+}
+
+function joueursConnectes(): int
+{
+    $pdo = requeteConnexion();
+    $users = count(glob(session_save_path() . '/*'));
+    return 0;
+}
+
+function displayAllGameScores(): string
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare("SELECT J.nom_du_jeu AS gameName, U.pseudo AS pseudo, S.difficulte_jeu AS gameDifficulty, S.score_partie AS gameScore
+    FROM score as S 
+    INNER JOIN utilisateur as U ON U.id = S.id_joueur
+    INNER JOIN jeu as J ON J.id = S.id_jeu");
+    $pdoStatement->execute();
+    $result = $pdoStatement->fetchALL();
+    $display = "";
+    foreach ($result as $key) {
+        if ($key->pseudo == "Wolphen") {
+            $display .= "<tr>";
+            $display .= "<td style='text-decoration: underline;color:orange'> $key->gameName </td>";
+            $display .= "<td style='text-decoration: underline;color:orange'> $key->pseudo </td>";
+            $display .= "<td style='text-decoration: underline;color:orange'> $key->gameDifficulty </td>";
+            $display .= "<td style='text-decoration: underline;color:orange'> $key->gameScore </td>";
+            $display .= "</tr>";
+        } else {
+            $display .= "<tr>";
+            $display .= "<td> $key->gameName </td>";
+            $display .= "<td> $key->pseudo </td>";
+            $display .= "<td> $key->gameDifficulty </td>";
+            $display .= "<td> $key->gameScore </td>";
+            $display .= "</tr>";
+        }
+    }
+    return $display;
+}
+
+function displayOnePlayerGameScores(): string
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare("SELECT J.nom_du_jeu AS gameName, U.pseudo AS pseudo, S.difficulte_jeu AS gameDifficulty, S.score_partie AS gameScore
+    FROM score as S 
+    INNER JOIN utilisateur as U ON U.id = S.id_joueur
+    INNER JOIN jeu as J ON J.id = S.id_jeu
+    WHERE U.pseudo = :pseudo");
+    $pdoStatement->execute([
+        ":pseudo" => $_GET['pseudo']
+    ]);
+    $result = $pdoStatement->fetchALL();
+    $display = "";
+    foreach ($result as $key) {
+        $display .= "<tr>";
+        $display .= "<td> $key->gameName </td>";
+        $display .= "<td> $key->pseudo </td>";
+        $display .= "<td> $key->gameDifficulty </td>";
+        $display .= "<td> $key->gameScore </td>";
+        $display .= "</tr>";
+    }
+    return $display;
+}
+
+function checkMailValidity(string $mail): bool
+{
+    $isMailValid = true;
+    if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        $isMailValid = false;
+        throw new Exception("Le format de l'email n'est pas valide.");
+    }
+    return $isMailValid;
+}
+
+function checkPseudoValidity(string $pseudo): bool
+{
+    $isPseudoValid = true;
+    if (strlen($pseudo) < 4 || strlen($pseudo) > 15) {
+        $isPseudoValid = false;
+        throw new Exception("Le pseudo doit être compris entre 4 et 15 caractères");
+    }
+
+    return $isPseudoValid;
+}
+function checkPasswordValidity(string $passwrd, string $passwordConfirm): bool
+{
+
+    $isPasswordValid = true;
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/', $passwrd)) {
+        $isPasswordValid = false;
+        throw new Exception("Doit contenir une minuscule, une majuscule, un chiffre, un caractère spécial, et de minimum 8 caractères");
+    } else if ($passwrd != $passwordConfirm) {
+        $isPasswordValid = false;
+        throw new Exception("Les mots de passe ne correspondent pas!");
+    }
+    return $isPasswordValid;
+}
+function subscribeForm(string $mail, string $pseudo, string $passwrd, string $passwordConfirm): void
+{
+    $hashedPassword = hash('sha256', $passwrd);
+    if (checkMailValidity($mail) && checkPseudoValidity($pseudo) && checkPasswordValidity($passwrd, $passwordConfirm)) {
+        try {
+            $pdo = requeteConnexion();
+            $pdoStatement = $pdo->prepare("INSERT INTO utilisateur (email, pseudo, mot_de_passe) VALUES (:mail, :pseudo, :passwrd )");
+            $pdoStatement->execute([":mail" => $mail, ":pseudo" => $pseudo, ":passwrd" => $hashedPassword]);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            throw new Exception("Erreur de connexion.");
+        }
+    } else {
+        throw new Exception("Il y a une erreur dans le mail ou le pseudo.");
+    }
+}
+
+function connexionUser(string $emailUser, string $passwrdCo): ?object
+{
+
+    $hashdPassword = hash('sha256', $passwrdCo);
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare("SELECT *, mot_de_passe as mdp FROM utilisateur WHERE email = :mail");
+    $pdoStatement->execute([":mail" => "$emailUser"]);
+    $result = $pdoStatement->fetch();
+    if ($result->mdp == $hashdPassword) {
+        return $result;
+    }
+    return null;
+}
+
+function modifyUserEmail(string $oldMail, string $newMail, string $passwrd): ?string
+{
+    $pdo = requeteConnexion();
+    $pdoPwd = $pdo->prepare("SELECT mot_de_passe as mdp from utilisateur where id = :id");
+    $pdoPwd->execute([":id" => $_SESSION["userId"]]);
+    $userinfo = $pdoPwd->fetch();
+    if ($userinfo->mdp == hash('sha256', $passwrd)) {
+        $pdoStatement = $pdo->prepare("UPDATE utilisateur SET email = :mail WHERE id = :id AND email = :oldMail");
+        $pdoStatement->execute([":mail" => $newMail, ":id" => $_SESSION['userId'], "oldMail" => $oldMail]);
+        if ($pdoStatement->rowCount() == 0) {
+            echo 'Erreur pas le bon email';
+        }
+        return "oui";
+    } else {
+        echo 'erreur dans la fonction de changement d\'email';
+    }
+}
+
+
+
+function modifyUserPassword(string $passwrd, string $newPasswrd, string $newPasswrdConfirm): void
+{
+    if (checkPasswordValidity($newPasswrd, $newPasswrdConfirm)) {
+
+        $hashdPassword = hash('sha256', $passwrd);
+        $newHashdPasswordd = hash('sha256', $newPasswrd);
+        $pdo = requeteConnexion();
+        $pdoPwd = $pdo->prepare("SELECT mot_de_passe as pawrd from utilisateur where id = :id");
+        $pdoPwd->execute([":id" => $_SESSION["userId"]]);
+        $userinfo = $pdoPwd->fetch();
+        try {
+            ($userinfo->pawrd == $hashdPassword);
+            $pdoStatement = $pdo->prepare("UPDATE utilisateur SET mot_de_passe = :newPasswrd WHERE id = :id");
+            $pdoStatement->execute([":newPasswrd" => $newHashdPasswordd, ":id" => $_SESSION['userId']]);
+            if ($pdoStatement->rowCount() == 0) {
+                echo 'Erreur pas le bon mot de passe';
+            } else {
+                echo 'Changement de mot de passe réussis';
+            }
+        } catch (PDOException $e) {
+            echo 'Erreur lors du changement de mot de passe, veuillez réessayez';
+        }
+    } else {
+        echo 'Il faut que les nouveaux mots de passes soit identique';
+    }
 }

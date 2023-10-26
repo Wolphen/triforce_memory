@@ -54,12 +54,12 @@
                      
                   <div class ="carreb">
                       <p>
-                        <strong>310</strong> <br> Joueurs
+                        <strong><?php echo partiesJouees()?></strong> <br> Partie Jouées
                         </p>
                     </div>
                     <div class = "carrep">
                         <p>
-                           <strong> 10 sec</strong> <br> Temps Record
+                           <strong> <?php echo tempsRecord()?> sec</strong> <br> Temps Record
                             
                         </p>
                     </div>
@@ -68,14 +68,14 @@
 
                     <div class = "carreg">
                         <p>
-                            <strong> <?php echo joueursInscrits() ?> </strong> <br> Joueurs Connectés
+                            <strong><?php echo joueursConnectes()?></strong> <br> Joueurs Connectés
                             
                     
                     </p>
                 </div>
                 <div class = "carreo">
                     <p>
-                       <strong> 21 300</strong> <br> Joueurs Inscrits
+                       <strong><?php echo joueursInscrits()?></strong> <br> Joueurs Inscrits
                         
                     </p>
                 </div>
@@ -115,7 +115,7 @@
                     </p>
                 </div>
                 <div class="big_block">
-                    <img src="../../assets//img/revali.png" alt="pp revali" class="revali_enzo">
+                    <img src="<?php echo PROJECT_FOLDER ?>assets/img/revali.png" alt="pp revali" class="revali_enzo">
                     <div class="block_other">
                         <p class="chat_username">
                             Arthur
