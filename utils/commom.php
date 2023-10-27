@@ -175,7 +175,6 @@ function connexionUser(string $emailUser, string $passwrdCo): ?object
     }
     return null;
 }
-
 function changeEmail(string $oldMail, string $newMail, string $passwrd): ?string
 {
     $pdo = requeteConnexion();
@@ -185,8 +184,12 @@ function changeEmail(string $oldMail, string $newMail, string $passwrd): ?string
     if ($userinfo->mdp == hash('sha256', $passwrd)) {
         $pdoStatement = $pdo->prepare("UPDATE utilisateur SET email = :mail WHERE id = :id AND email = :oldMail");
         $pdoStatement->execute([":mail" => $newMail, ":id" => $_SESSION['userId'], "oldMail" => $oldMail]);
-
+        if ($pdoStatement->rowCount() == 0) {
+            echo 'Erreur pas le bon email';
+        }
         return "oui";
+    } else {
+        echo 'erreur dans la fonction de changement d\'email';
     }
 }
 
@@ -194,23 +197,57 @@ function changeEmail(string $oldMail, string $newMail, string $passwrd): ?string
 
 function changePasswrd(string $passwrd, string $newPasswrd, string $newPasswrdConfirm): void
 {
-    if (checkPasswordValidity2($newPasswrd, $newPasswrdConfirm)) { 
+    if (checkPasswordValidity2($newPasswrd, $newPasswrdConfirm)) {
 
-        $hashdPassword = hash('sha256', $passwrd); 
+        $hashdPassword = hash('sha256', $passwrd);
         $newHashdPasswordd = hash('sha256', $newPasswrd);
         $pdo = requeteConnexion();
-        $pdoPwd = $pdo->prepare("SELECT mot_de_passe as mdp from utilisateur where id = :id");
+        $pdoPwd = $pdo->prepare("SELECT mot_de_passe as pawrd from utilisateur where id = :id");
         $pdoPwd->execute([":id" => $_SESSION["userId"]]);
         $userinfo = $pdoPwd->fetch();
-        try {($userinfo->mdp == $hashdPassword);
-        $pdoStatement = $pdo->prepare("UPDATE utilisateur SET mot_de_passe = :newPasswrd WHERE id = :id");
-        $pdoStatement->execute([ ":newPasswrd" => $newHashdPasswordd, ":id" => $_SESSION['userId']]);
+        try {
+            ($userinfo->pawrd == $hashdPassword);
+            $pdoStatement = $pdo->prepare("UPDATE utilisateur SET mot_de_passe = :newPasswrd WHERE id = :id");
+            $pdoStatement->execute([":newPasswrd" => $newHashdPasswordd, ":id" => $_SESSION['userId']]);
+            if ($pdoStatement->rowCount() == 0) {
+                echo 'Erreur pas le bon mot de passe';
+            }
         echo 'Changement de mot de passe réussis';
-    } catch (PDOException $e) {
-        echo 'Erreur lors du changement de mot de passe, veuillez réessayez';
-}
-    }
-    else {
+        } catch (PDOException $e) {
+            echo 'Erreur lors du changement de mot de passe, veuillez réessayez';
+        }
+    } else {
         echo 'Il faut que les nouveaux mots de passes soit identique';
     }
 }
+$userId ="";
+$uploadDir = 'userFiles/';
+ if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+ }
+$allowedExtensions = array('jpg', 'jpeg', 'png');
+$userDirectory = $uploadDir . $userId . '/';
+$filename = $userId . '_profile.png';
+$filePath = $userDirectory . $filename;
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['file'];
+        $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        if (!file_exists($userDirectory)) {
+            mkdir($userDirectory, 0777, true);
+            if (in_array(strtolower($fileExtension), $allowedExtensions)) {
+             
+                $userId = $_SESSION['userId'];
+                $filename = $userId . '_profile.png';
+                $filePath = $userDirectory . $filename;
+                
+                
+            }
+        }
+            if (move_uploaded_file($file['tmp_name'], $filePath)) {
+            }
+    }
+}
+$userProfileImage = $filePath;
+

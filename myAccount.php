@@ -7,11 +7,8 @@
 <div class="banniere">
     <h1>MON COMPTE</h1>
 </div>
-<?php if (isset($_GET['oldMail'], $_GET['newMail'], $_GET['passwrd'])) {
-    changeEmail($_GET['oldMail'], $_GET['newMail'], $_GET['passwrd']);
-}
 
-?>
+
 <body>
     <!-- Code pour changer d'email ou de mot de passe  -->
     <div class="emailpass">
@@ -24,10 +21,10 @@
                 <input type="text" id="newMail" name="newMail" placeholder="Nouvel email" required class="emailfo">
                 <input type="text" id="password" name="passwrd" placeholder="Mot de passe" required class="emailfo">
                 <?php if (isset($_GET['oldMail'], $_GET['newMail'], $_GET['passwrd'])) {
-    changeEmail($_GET['oldMail'], $_GET['newMail'], $_GET['passwrd']);
-}
+                    changeEmail($_GET['oldMail'], $_GET['newMail'], $_GET['passwrd']);
+                }
 
-?>
+                ?>
                 <input type="submit" value="Changer d'email" class="inputsubmit1">
             </form>
         </div>
@@ -40,17 +37,31 @@
                 <input type="text" id="mail" name="newPasswrd" placeholder="Nouveau mot de passe" required class="emailfo">
                 <input type="text" id="password" name="newPasswrdConfirm" placeholder="Confirmer le nouveau mot de passe" required class="emailfo">
                 <?php if (isset($_GET['passwrd'], $_GET['newPasswrd'], $_GET['newPasswrdConfirm'])) {
-    changePasswrd($_GET['passwrd'], $_GET['newPasswrd'], $_GET['newPasswrdConfirm']);
-}
-?>
+                    changePasswrd($_GET['passwrd'], $_GET['newPasswrd'], $_GET['newPasswrdConfirm']);
+                }
+                ?>
                 <input type="submit" value="Changer de mot de passe" class="inputsubmit1">
+            </form>
         </div>
     </div>
 
-
-
-
-
+    <div class="containerrr">
+    <h1>Changer l'image de profile</h1>
+    <form  method="post" enctype="multipart/form-data" class = "formpp">
+        <label for="file" class = "labelpp">Choisissez une image de profil :</label>
+        <input type="file" name="file" id="file" accept="image/*" class = "inputpp">
+        <input type="submit" value="Télécharger" name="submit" class ="submitpp">
+    </form>
+    <img src="<?php echo $userProfileImage?>" alt="profile picture" class = "pppicture">
+</div>  
+    
+    
+    <div class="logout-button">
+        <form  method="post" class ="formdeco">
+            <input type="hidden" name="userId" value="<?php session_destroy()/* ; header('Location: index.php') */ ?>" class="inputdeco"> 
+            <input type="submit" value="Déconnexion"  class="submitdeco">
+        </form>
+    </div>
 
 
     <?php require SITE_ROOT . 'partials/footer.php'; ?>
