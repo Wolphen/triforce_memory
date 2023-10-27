@@ -871,3 +871,85 @@ body::-webkit-scrollbar {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size:small;
 }
+
+
+.containerr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.formpp {
+    margin: 20px;
+}
+
+.labelpp {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.inputpp {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submitpp {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitpp:hover {
+    background-color: #0056b3;
+}
+.pppicture {
+    height:20vh; 
+    width:20vh; 
+    border-radius:300px;
+}
+
+.containerrr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+
+
+.user-info {
+    margin: 20px;
+    text-align: left;
+}
+
+.logout-button {
+    margin: 20px;
+}
+
+.formdeco{
+    display: inline; /* Pour que le bouton apparaisse sur la même ligne que le texte "Déconnexion" */
+}
+
+.submitdeco {
+    background-color: #f00; /* Couleur du bouton de déconnexion */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submitdeco:hover {
+    background-color: #c00; /* Couleur au survol du bouton */
+}
