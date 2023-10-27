@@ -10,7 +10,7 @@
     <title>Triforce Memory</title>
 </head>
 <header>
-    <div class="t1"><a href="index.php">Triforce memory</a></div>
+    <div class="t1"><a href="<?= PROJECT_FOLDER ?>index.php">Triforce memory</a></div>
     <nav> 
         <div class="nav2"><a href="<?= PROJECT_FOLDER ?>index.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'index.php') ? 'class="active"' : '' ?>>ACCUEIL</a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>select_level.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'select_level.php') ? 'class="active"' : '' ?>>JEU</a></div>

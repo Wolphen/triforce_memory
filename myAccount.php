@@ -55,11 +55,11 @@
     <img src="<?php echo $userProfileImage?>" alt="profile picture" class = "pppicture">
 </div>  
     
-    
+ <?php if (isset($_POST['deconnexion'])) : session_destroy(); header('Location: index.php'); endif; ?>
     <div class="logout-button">
         <form  method="post" class ="formdeco">
-            <input type="hidden" name="userId" value="<?php session_destroy()/* ; header('Location: index.php') */ ?>" class="inputdeco"> 
-            <input type="submit" value="Déconnexion"  class="submitdeco">
+            
+            <input type="submit" value="Déconnexion" name ='deconnexion' class="submitdeco">
         </form>
     </div>
 
@@ -68,3 +68,4 @@
 </body>
 
 </html>
+
