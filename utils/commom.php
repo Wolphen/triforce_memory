@@ -9,7 +9,7 @@ define('SITE_ROOT', $_SERVER['DOCUMENT_ROOT'] . PROJECT_FOLDER);
 
 session_start();
 
-function joueursInscrits(): int
+function subscribedPlayer(): int
 {
     $pdo = requeteConnexion();
     $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS subscribeNumber FROM utilisateur');
@@ -18,7 +18,7 @@ function joueursInscrits(): int
     return $result->subscribeNumber;
 }
 
-function tempsRecord(): int
+function bestTime(): int
 {
     $pdo = requeteConnexion();
     $pdoStatement = $pdo->prepare('SELECT MIN(score_partie) AS bestTime FROM score');
@@ -27,7 +27,7 @@ function tempsRecord(): int
     return $result->bestTime;
 }
 
-function partiesJouees(): int
+function gamePlayed(): int
 {
     $pdo = requeteConnexion();
     $pdoStatement = $pdo->prepare('SELECT COUNT(id) AS gamePlayed FROM score');
@@ -36,7 +36,7 @@ function partiesJouees(): int
     return $result->gamePlayed;
 }
 
-function joueursConnectes(): int
+function playerON(): int
 {
     $pdo = requeteConnexion();
     $users = count(glob(session_save_path() . '/*'));
