@@ -32,17 +32,17 @@
         <div class="heros">
             <h1 class="theme_title_title">Thème HÉROS</h1>
             <p class="heroes_select">
-                <a href="game_link.html#easy"> FACILE : 4x4 <br><br></a>
-                <a href="game_link.html#normal"> NORMAL : 8x8 <br><br></a>
-                <a href="game_link.html#hard"> DIFFICILE : 12x12</a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_link.php#easy"> FACILE : 4x4 <br><br></a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_link.php#normal"> NORMAL : 8x8 <br><br></a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_link.php#hard"> DIFFICILE : 12x12</a>
             </p>
         </div>
         <div class="vilains">
             <h1 class="theme_title_title">Thème VILAIN</h1>
             <p class="vilain_select">
-                <a href="game_vilain.html#easy"> FACILE : 4x4 <br><br></a>
-                <a href="game_vilain.html#normal"> NORMAL : 8x8 <br><br></a>
-                <a href="game_vilain.html#hard"> DIFFICILE : 12x12</a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_vilain.php#easy"> FACILE : 4x4 <br><br></a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_vilain.php#normal"> NORMAL : 8x8 <br><br></a>
+                <a href="<?= PROJECT_FOLDER ?>games/memory/game_vilain.php#hard"> DIFFICILE : 12x12</a>
             </p>
         </div>
     </div>

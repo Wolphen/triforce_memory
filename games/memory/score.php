@@ -45,7 +45,7 @@
     </table>
 
     <div class="dsip">
-        <div class="hi3"><a href="select_level.html">REJOUER</a></div>
+        <div class="hi3"><a href="<?= PROJECT_FOLDER ?>select_level.php">REJOUER</a></div>
     </div>
 
     <?php require SITE_ROOT . 'partials/footer.php'; ?>
