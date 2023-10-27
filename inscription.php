@@ -4,25 +4,7 @@
 <html lang="fr">
 <?php require 'partials/head.php'; ?>
 <?php require 'partials/heade.php'; ?>
-<?php
-$email = $_GET['email'] ?? '';
-$pseudo = $_GET['pseudo'] ?? '';
-$passwrd = $_GET['passwrd'] ?? '';
-$passwordConfirm = $_GET['passwordConfirm'] ?? '';
 
-
-
-try {
-    if (isset($_GET['email'], $_GET['pseudo'], $_GET['passwrd'], $_GET['passwordConfirm'])) {
-        subscribeForm($email, $pseudo, $passwrd, $passwordConfirm);
-        echo '<p>Inscription réussis</p>';
-    }
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
-
-
-?>
 
 <body>
 
@@ -50,6 +32,25 @@ try {
             <input type="submit" value="inscription" class="inputsubmit">
             <label class="creecompte"><a href="connexion.php">Déjà un compte ? Connectez-vous ici.</a></label>
             </label>
+            <?php
+$email = $_GET['email'] ?? '';
+$pseudo = $_GET['pseudo'] ?? '';
+$passwrd = $_GET['passwrd'] ?? '';
+$passwordConfirm = $_GET['passwordConfirm'] ?? '';
+
+
+
+try {
+    if (isset($_GET['email'], $_GET['pseudo'], $_GET['passwrd'], $_GET['passwordConfirm'])) {
+        subscribeForm($email, $pseudo, $passwrd, $passwordConfirm);
+        echo '<p>Inscription réussis</p>';
+    }
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
+
+?>
     </div>
 
 

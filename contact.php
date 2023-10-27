@@ -4,6 +4,12 @@
 <?php require 'partials/head.php'; ?>
 <?php require 'partials/heade.php'; ?>
 
+<?php 
+    if(isset($_POST['mail'], $_POST['subject'], $_POST['message'])) {
+        sendContactMail($_POST['mail'],$_POST['subject'],$_POST['message']);
+    }
+?>
+
 <body>
     <div class="contact_main">
         <div class="banniere">

@@ -46,26 +46,27 @@
     </div>
 
     <div class="containerrr">
-    <h1>Changer l'image de profile</h1>
-    <form  method="post" enctype="multipart/form-data" class = "formpp">
-        <label for="file" class = "labelpp">Choisissez une image de profil :</label>
-        <input type="file" name="file" id="file" accept="image/*" class = "inputpp">
-        <input type="submit" value="Télécharger" name="submit" class ="submitpp">
-    </form>
-    <img src="<?php echo $userProfileImage?>" alt="profile picture" class = "pppicture">
-</div>  
-    
- <?php if (isset($_POST['deconnexion'])) : session_destroy(); header('Location: index.php'); endif; ?>
+        <h1>Changer l'image de profile</h1>
+        <form method="post" enctype="multipart/form-data" class="formpp">
+            <label for="file" class="labelpp">Choisissez une image de profil :</label>
+            <input type="file" name="file" id="file" accept="image/*" class="inputpp">
+            <input type="submit" value="Télécharger" name="submit" class="submitpp">
+        </form>
+        <img src="<?php echo $userProfileImage ?>" alt="profile picture" class="pppicture">
+        
+        <?php if (isset($_POST['deconnexion'])) : session_destroy();
+        header('Location: index.php');
+    endif; ?>
     <div class="logout-button">
-        <form  method="post" class ="formdeco">
+        <form method="post" class="formdeco">
             
-            <input type="submit" value="Déconnexion" name ='deconnexion' class="submitdeco">
+            <input type="submit" value="Déconnexion" name='deconnexion' class="submitdeco">
         </form>
     </div>
+</div>
 
 
     <?php require SITE_ROOT . 'partials/footer.php'; ?>
 </body>
 
 </html>
-
