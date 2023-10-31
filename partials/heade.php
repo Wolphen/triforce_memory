@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="<?= PROJECT_FOLDER ?>assets/header.css">
     <link rel="stylesheet" href="<?= PROJECT_FOLDER ?>assets/main.css">
     <link rel="icon" href="<?= PROJECT_FOLDER ?>assets/img/téléchargé.jpg" type="image/x-icon">
-    <script src="<?= PROJECT_FOLDER ?>assets/scripts.js"></script>
     <title>Triforce Memory</title>
 </head>
 <header>

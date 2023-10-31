@@ -353,6 +353,8 @@ td {
 
 .chatboxScroll{
     overflow-y: scroll;
+    display: flex;
+    justify-content: flex-end;
 }
 .chatbox_body {
   display: flex;

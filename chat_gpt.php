@@ -18,11 +18,13 @@ if (isset($_SESSION['userId'], $_POST['chat'])) {
             Chat général
         </div>
         <div class="chatboxScroll">
-            <?php echo displayChatAll();
-            ?>
-            <form method="POST" class="chat_input">
-                <input type="text" name="chat" class="chatSend" placeholder="Votre message...">
-                <input type="submit" value="Envoyer" class="send_input">
+            <?php echo displayChatAll(); ?>
+            <div>
+
+                <form method="POST" class="chat_input">
+                    <input type="text" name="chat" class="chatSend" placeholder="Votre message...">
+                    <input type="submit" value="Envoyer" class="send_input">
+            </div>
             </form>
         </div>
     </div>

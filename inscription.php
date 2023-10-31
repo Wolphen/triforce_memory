@@ -23,7 +23,12 @@
 
             <br>
             <label for="password" class="labell"></label>
-            <input type="text" id="password" name="passwrd" placeholder="Mot de passe" required class="inputl">
+            <input type="text" id="password" name="passwrd" placeholder="Mot de passe" required class="inputl" onkeyup="passwordCheck()">
+            
+            <span id = "easy"></span>
+            <span id = "medium"></span>
+            <span id = "difficult"></span>
+            <span id = "hardDifficult"></span>
             <br>
             <label for="password" class="labell"></label>
             <input type="text" id="password" name="passwordConfirm" placeholder="Confirmer le mot de passe" required class="inputl">
@@ -56,6 +61,7 @@ try {
 
     <?php require_once SITE_ROOT . "partials/footer.php"; ?>
 
+    <script src="assets/scripts.js"></script>
 </body>
 
 </html>

@@ -211,25 +211,23 @@ function changePasswrd(string $passwrd, string $newPasswrd, string $newPasswrdCo
                 $pdoStatement->execute([":newPasswrd" => $newHashdPasswordd, ":id" => $_SESSION['userId']]);
                 if ($pdoStatement->rowCount() == 0) {
                     echo 'Erreur pas le bon mot de passe';
-                }
-                else {
+                } else {
                     echo 'Il faut que les nouveaux mots de passes soit identique';
                 }
                 echo 'Changement de mot de passe réussis';
             }
-        }
-            catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo 'Erreur lors du changement de mot de passe, veuillez réessayez';
-            }
+        }
     }
 }
 
 
-$userId ="";
+$userId = "";
 $uploadDir = 'userFiles/';
- if (isset($_SESSION['userId'])) {
+if (isset($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];
- }
+}
 $allowedExtensions = array('jpg', 'jpeg', 'png');
 $userDirectory = $uploadDir . $userId . '/';
 $filename = $userId . '_profile.png';
@@ -242,18 +240,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!file_exists($userDirectory)) {
             mkdir($userDirectory, 0777, true);
             if (in_array(strtolower($fileExtension), $allowedExtensions)) {
-             
+
                 $userId = $_SESSION['userId'];
                 $filename = $userId . '_profile.png';
                 $filePath = $userDirectory . $filename;
-                
-                
             }
         }
-            if (move_uploaded_file($file['tmp_name'], $filePath)) {
-            }
+        if (move_uploaded_file($file['tmp_name'], $filePath)) {
+        }
     }
 }
+
 $userProfileImage = $filePath;
 
 function insertChatInDatabase(string $chatMessage): void
@@ -277,21 +274,20 @@ function displayChatAll(): ?string
     $display = "";
     foreach ($messageInfo as $message) {
         if ($message->id == $_SESSION['userId']) {
-            $display.="<div class='chat_chat'>";
-            $display.="<div class='block_user'>";
-            $display.="<p class='chat_username'> $message->pseudo</p>";
-            $display.="<p class='chat_user'> $message->message_text</p>";
-            $display.="<p class='chat_time'> $message->horodatage</p>";
-            $display.="</div>";
+            $display .= "<div class='chat_chat'>";
+            $display .= "<div class='block_user'>";
+            $display .= "<p class='chat_username'> $message->pseudo</p>";
+            $display .= "<p class='chat_user'> $message->message_text</p>";
+            $display .= "<p class='chat_time'> $message->horodatage</p>";
+            $display .= "</div>";
         } else {
-            $display.="<div class='block_other'>";
-            $display.="<p class='chat_username'>$message->pseudo</p>";
-            $display.="<p class='chat_other'>$message->message_text</p>";
-            $display.="<p class='chat_time'>$message->horodatage</p>";
-            $display.="</div>";
+            $display .= "<div class='block_other'>";
+            $display .= "<p class='chat_username'>$message->pseudo</p>";
+            $display .= "<p class='chat_other'>$message->message_text</p>";
+            $display .= "<p class='chat_time'>$message->horodatage</p>";
+            $display .= "</div>";
         }
-
-}
+    }
     return $display;
 }
 
