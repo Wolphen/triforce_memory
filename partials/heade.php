@@ -31,7 +31,7 @@
             echo '';
         }?></a></div>
 
-        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>myAccount.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'myAccount.php') ? 'class="active"' : '' ?>>
+        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>myAccount.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'myAccount.php') ? 'class="active"' : '' ?>id = "pseudoMessage">
         <?php if (isset($_SESSION['pseudo'])) {
             echo $_SESSION['pseudo'];
         }

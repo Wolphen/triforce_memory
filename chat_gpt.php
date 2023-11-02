@@ -1,4 +1,3 @@
-
 <?php require "utils/commom.php" ?>
 <?php require_once SITE_ROOT . "utils/database.php"; ?>
 
@@ -15,17 +14,18 @@
     <div class="chat-header">Messagerie</div>
     <div class="chat-messages">
 
+
         <?php
         $db = requeteConnexion();
         $sqlrequest = $db->prepare('SELECT * FROM messagerie
-        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by horodatage DESC');
+        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by horodatage asc');
         $sqlrequest->execute();
         $results = $sqlrequest->fetchAll();
 
         foreach ($results as $result) {
             if ($result->expediteur_id != $_SESSION['userId']) :
         ?>
-                <div class="message">
+                <div class="message" id="messageSs">
                     <div class="message-sender2"><?= $result->pseudo ?></div>
                     <div class="message-content2"><?= $result->message_text ?></div>
                     <div class="message-statu2"><?= $result->horodatage ?></div>
@@ -52,8 +52,15 @@
             <input type="text" id="message-input" name="envoie_msg" placeholder="Saisissez votre message...">
             <button id="send-button">Envoyer</button>
         </form>
-          
+
     </div>
 </div>
+
+<script>
+    var pseudo = '<?=$_SESSION['pseudo'] ?>';
+    var objDiv = document.getElementsByClassName("chat-messages")[0];
+    objDiv.scrollTop = objDiv.scrollHeight
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="assets/chat.js"></script>
