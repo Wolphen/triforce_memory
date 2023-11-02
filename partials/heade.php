@@ -15,7 +15,13 @@
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>select_level.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'select_level.php') ? 'class="active"' : '' ?>>JEU</a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>games/memory/score.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'games/memory/score.php') ? 'class="active"' : '' ?>>SCORES</a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>contact.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'contact.php') ? 'class="active"' : '' ?>> NOUS CONTACTER</a></div>
-        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>chat_gpt.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'chat_gpt.php') ? 'class="active"' : '' ?>>CHAT</a></div>
+        <div class="nav1"><a href="<?= PROJECT_FOLDER ?>chat_gpt.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'chat_gpt.php') ? 'class="active"' : '' ?>>
+        <?php if (isset($_SESSION['pseudo'])) {
+            echo 'CHAT';
+        }
+        else {
+            echo '';
+        }?></a></div>
         <div class="nav1"><a href="<?= PROJECT_FOLDER ?>connexion.php" <?= ($_SERVER['PHP_SELF'] == PROJECT_FOLDER . 'connexion.php') ? 'class="active"' : '' ?>>
 
         <?php if (!isset($_SESSION['pseudo'])) {

@@ -18,7 +18,7 @@
         <?php
         $db = requeteConnexion();
         $sqlrequest = $db->prepare('SELECT * FROM messagerie
-        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by horodatage ASC');
+        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by horodatage DESC');
         $sqlrequest->execute();
         $results = $sqlrequest->fetchAll();
 
@@ -28,7 +28,7 @@
                 <div class="message">
                     <div class="message-sender2"><?= $result->pseudo ?></div>
                     <div class="message-content2"><?= $result->message_text ?></div>
-                    <div class="message-statu2">Aujourd'hui à <strong>15h18</strong> vu </div>
+                    <div class="message-statu2"><?= $result->horodatage ?></div>
                 </div>
             <?php
             else :
@@ -36,7 +36,7 @@
                 <div class="message">
                     <div class="message-sender"> <?= $result->pseudo ?></div>
                     <div class="message-content"><?= $result->message_text ?></div>
-                    <div class="message-statu">Aujourd'hui à <strong>15h16</strong> vu </div>
+                    <div class="message-statu"><?= $result->horodatage ?></div>
                 </div>
         <?php
             endif;
@@ -48,16 +48,12 @@
 
     </div>
     <div class="chat-input">
-        <form method="post">
+        <form id="formMessage">
             <input type="text" id="message-input" name="envoie_msg" placeholder="Saisissez votre message...">
             <button id="send-button">Envoyer</button>
-        </from>
-            <?php
-            if (isset($_POST["envoie_msg"])) {
-                $insertionDonnee = $db->prepare('INSERT INTO messagerie (jeux_id, expediteur_id, message_text) 
-            VALUES (:jeu, :expediteur, :message_text)');
-                $insertionDonnee->execute([':jeu' => 1, ':expediteur' => $_SESSION['userId'], ':message_text' => $_POST['envoie_msg']]);
-            }
-            ?>
+        </form>
+          
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="assets/chat.js"></script>
