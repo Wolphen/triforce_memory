@@ -1,37 +1,66 @@
-<div class="chatbox_body">
-    <div class="chat_top">
-        <img src="assets/img/link.png" alt="pp link" class="link_larbi">
-        Chat général
+<?php require "utils/commom.php" ?>
+<?php require_once SITE_ROOT . "utils/database.php"; ?>
+
+<?php require 'partials/head.php'; ?>
+<?php require 'partials/heade.php'; ?>
+
+
+
+
+
+
+
+<div class="chat-container">
+    <div class="chat-header">Messagerie</div>
+    <div class="chat-messages">
+
+
+        <?php
+        $db = requeteConnexion();
+        $sqlrequest = $db->prepare('SELECT * FROM messagerie
+        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by horodatage asc');
+        $sqlrequest->execute();
+        $results = $sqlrequest->fetchAll();
+
+        foreach ($results as $result) {
+            if ($result->expediteur_id != $_SESSION['userId']) :
+        ?>
+                <div class="message" id="messageSs">
+                    <div class="message-sender2"><?= $result->pseudo ?></div>
+                    <div class="message-content2"><?= $result->message_text ?></div>
+                    <div class="message-statu2"><?= $result->horodatage ?></div>
+                </div>
+            <?php
+            else :
+            ?>
+                <div class="message">
+                    <div class="message-sender"> <?= $result->pseudo ?></div>
+                    <div class="message-content"><?= $result->message_text ?></div>
+                    <div class="message-statu"><?= $result->horodatage ?></div>
+                </div>
+        <?php
+            endif;
+        }
+
+
+        ?>
+
+
     </div>
-    <div class="chat_chat">
-        <div class="block_user">
-            <p class="chat_username">
-                Moi
-            </p>
-            <p class="chat_user">
-                Hello
-            </p>
-            <p class="chat_time">
-                Aujourd'hui a 15h22
-            </p>
-        </div>
-        <div class="big_block">
-            <img src="assets/img/revali.png" alt="pp revali" class="revali_enzo">
-            <div class="block_other">
-                <p class="chat_username">
-                    Arthur
-                </p>
-                <p class="chat_other">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-                <p class="chat_time">
-                    Aujourd'hui a 15h23
-                </p>
-            </div>
-        </div>
-        <form action="POST" action="traitement.php" class="chat_input">
-            <input type="text" name="chat" id="chat" placeholder="Votre message...">
-            <input type="submit" value="Envoyer" class="send_input">
+    <div class="chat-input">
+        <form id="formMessage">
+            <input type="text" id="message-input" name="envoie_msg" placeholder="Saisissez votre message...">
+            <button id="send-button">Envoyer</button>
         </form>
+
     </div>
 </div>
+
+<script>
+    var pseudo = '<?=$_SESSION['pseudo'] ?>';
+    var objDiv = document.getElementsByClassName("chat-messages")[0];
+    objDiv.scrollTop = objDiv.scrollHeight
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="assets/chat.js"></script>

@@ -99,7 +99,56 @@
         </div>
 
     </body>
-  
+    <div class="chat-container">
+        <div class="chat-header">Messagerie</div>
+        <div class="chat-messages">
+
+            <?php
+            $db = requeteConnexion();
+            $sqlrequest = $db->prepare('SELECT * FROM messagerie
+        INNER JOIN utilisateur AS u1 ON messagerie.expediteur_id = u1.id order by message_text ASC');
+            $sqlrequest->execute();
+            $results = $sqlrequest->fetchAll();
+
+            foreach ($results as $result) {
+                if ($result->expediteur_id != $_SESSION['userId']) :
+            ?>
+                    <div class="message">
+                        <div class="message-sender2"><?= $result->pseudo ?></div>
+                        <div class="message-content2"><?= $result->message_text ?></div>
+                        <div class="message-statu2">Aujourd'hui à <strong>15h18</strong> vu </div>
+                    </div>
+                <?php
+                else :
+                ?>
+                    <div class="message">
+                        <div class="message-sender"> <?= $result->pseudo ?></div>
+                        <div class="message-content"><?= $result->message ?></div>
+                        <div class="message-statu">Aujourd'hui à <strong>15h16</strong> vu </div>
+                    </div>
+            <?php
+                endif;
+            }
+
+
+            ?>
+
+
+        </div>
+        <div class="chat-input">
+            <form method="post">
+                <input type="text" id="message-input" name="envoie_msg" placeholder="Saisissez votre message...">
+                <button id="send-button">Envoyer</button>
+                </from>
+                <?php
+                if (isset($_POST["envoie_msg"])) {
+                    $insertionDonnee = $pdo->prepare('INSERT INTO messagerie (jeux_id, expediteur_id, message_text) 
+            VALUES (:jeu, :expediteur, :message)');
+                    $insertionDonnee->execute([':jeu' => 1, ':expediteur' => $_SESSION['userId'], ':message' => $_POST['envoie_msg']]);
+                }
+                ?>
+        </div>
+    </div>
 </main>
 
 <?php require SITE_ROOT . 'partials/footer.php'; ?>

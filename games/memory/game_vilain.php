@@ -69,7 +69,7 @@
                 <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/33.jpg" alt="Dos de cartes" class="card_img"></th>
             </tr>
             <tr>
-                <th><img src="<?= PROJECT_FOLDER ?>assets/img/<?= PROJECT_FOLDER ?>assets/img/theme.villain/40.jpg" alt="Dos de cartes" class="card_img"></th>
+                <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/40.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/41.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/42.jpg" alt="Dos de cartes" class="card_img"></th>
                 <th><img src="<?= PROJECT_FOLDER ?>assets/img/theme.villain/4.jpg" alt="Dos de cartes" class="card_img"></th>
