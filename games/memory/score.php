@@ -22,7 +22,7 @@
             </div>
         </div>
     </form>
-    <table>
+    <table class="tableScore">
 
         <thead>
             <tr class="truie">

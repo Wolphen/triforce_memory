@@ -251,3 +251,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 $userProfileImage = $filePath;
 
+function displayChatAll(): ?string
+{
+    $pdo = requeteConnexion();
+    $pdoStatement = $pdo->prepare("SELECT U.id,U.pseudo,M.message_text,M.horodatage FROM messagerie as M INNER JOIN utilisateur as U ON U.id=M.expediteur_id WHERE M.horodatage = DATE_SUB(NOW(), INTERVAL 1 DAY)");
+    $pdoStatement->execute();
+    $messageInfo = $pdoStatement->fetchALL();
+    $display = "";
+    foreach ($messageInfo as $message) {
+        if ($message->id == $_SESSION['userId']) {
+            $display .= "<div class='chat_chat'>";
+            $display .= "<div class='block_user'>";
+            $display .= "<p class='chat_username'> $message->pseudo</p>";
+            $display .= "<p class='chat_user'> $message->message_text</p>";
+            $display .= "<p class='chat_time'> $message->horodatage</p>";
+            $display .= "</div>";
+        } else {
+            $display .= "<div class='block_other'>";
+            $display .= "<p class='chat_username'>$message->pseudo</p>";
+            $display .= "<p class='chat_other'>$message->message_text</p>";
+            $display .= "<p class='chat_time'>$message->horodatage</p>";
+            $display .= "</div>";
+        }
+    }
+    return $display;
+}
+
+function insertChatInDatabase(string $chatMessage): void
+{
+    try {
+        $pdo = requeteConnexion();
+        $pdoStatement = $pdo->prepare("INSERT INTO messagerie(jeux_id, expediteur_id, message_text, horodatage)
+            VALUES (1,:senderId, :messageText, CURRENT_TIMESTAMP())");
+        $pdoStatement->execute([":senderId" => $_SESSION['userId'], ":messageText" => $chatMessage]);
+    } catch (PDOException $e) {
+        echo "Erreur de connexion";
+    }
+}

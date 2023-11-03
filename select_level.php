@@ -1,4 +1,6 @@
-<?php require "utils/commom.php" ?>
+<?php require "utils/commom.php" ;
+require_once SITE_ROOT . "utils/database.php";?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <?php require 'partials/head.php'; ?>
@@ -20,7 +22,9 @@
 
         </div>
     </div>
-    <div class="all_theme">
+    <br>
+    <br>
+    <!-- <div class="all_theme">
         <div class="royal">
             <h1 class="theme_title_title">Thème ROYAL</h1>
             <p class="royal_select">
@@ -44,51 +48,37 @@
                 <a href="<?= PROJECT_FOLDER ?>games/memory/game_vilain.php#normal"> NORMAL : 8x8 <br><br></a>
                 <a href="<?= PROJECT_FOLDER ?>games/memory/game_vilain.php#hard"> DIFFICILE : 12x12</a>
             </p>
+        </div>-->
+    <form class="formGame">
+        <div class="flexSelect">
+            <div>
+                <label for="difficulty" class="labelGame">Choisissez votre difficulté: </label>
+                <select name="difficulty" id="difficulty" class="selectGame">
+                    <option value="facile" class="selectGame" id="easy">FACILE</option>
+                    <option value="normal" class="selectGame"id="normal" >NORMAL</option>
+                    <option value="difficile" class="selectGame" id="hard">DIFFICILE</option>
+                </select>
+            </div>
+            <div class="divForm">
+                <label for="difficulty" class="labelGame">Choisissez votre thème: </label>
+                <select name="theme" id="theme" class="selectGame">
+                    <option value="hero" class="selectGame" id="hero" >HÉROS</option>
+                    <option value="vilains" class="selectGame" id="vilains" >VILLAINS</option>
+                    <option value="royal" class="selectGame" id="royal" >ROYAL</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <!--<div class="ontop">
-        <div class = "theme_title">
-            <h1 class="theme_title_title">Thème ROYAL</h1>
-            <h1 class="theme_title_title">Thème HÉROS</h1>
-            <h1 class="theme_title_title">Thème VILAIN</h1>
+        <br>
+        <br>
+        <input type="button" value="JOUER" onclick="tableRoyalEasy();" class="inputStartGame" id="timerStart">
+    </form>
 
-        </div> 
-        
 
-    </div>
-    <div class = "alltheme">
-        <div class ="royal">
-            <p class = "bigboy">
-                <span class = "royaa">
-                    <a href="game_royal.html">  FACILE : 4x4 <br><br></a>
-                    <a href="game_royal.html"> NORMAL : 8x8 <br><br></a>
-                    <a href="game_royal.html"> DIFFICILE : 12x12</a>
-                </span>
-            </p>
-        </div>
-        <div class ="heroez">
-            <p class = "bigboy">
-                <span class = "heroo">
-                <a href="game_link.html">  FACILE : 4x4 <br><br></a>
-                <a href="game_link.html"> NORMAL : 8x8 <br><br></a>
-                <a href="game_link.html"> DIFFICILE : 12x12</a>
-            </span>
-             </p>
-
-        </div>
-        <div class = "villainz">
-            <p class = "bigboy">
-                <span class = "villaa">
-                    <a href="game_vilain.html">  FACILE : 4x4 <br><br></a>
-                    <a href="game_vilain.html"> NORMAL : 8x8 <br><br></a>
-                    <a href="game_vilain.html"> DIFFICILE : 12x12</a>
-                </span>
-             </p>
-        </div>
--->
+    <div id="gameBoard">
 
     </div>
 </body>
 <?php require SITE_ROOT . 'partials/footer.php'; ?>
+<script type="text/javascript" src="./assets/script.js"></script>
 
 </html>
