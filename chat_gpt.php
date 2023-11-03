@@ -57,7 +57,7 @@
 </div>
 
 <script>
-    var pseudo = '<?=$_SESSION['pseudo'] ?>';
+    var pseudo = '<?= $_SESSION['pseudo'] ?>';
     var objDiv = document.getElementsByClassName("chat-messages")[0];
     objDiv.scrollTop = objDiv.scrollHeight
 </script>
